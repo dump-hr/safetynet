@@ -1,0 +1,8 @@
+servers:
+  web:
+    hosts:
+      - 0.0.0.0 # TODO
+
+env:
+  clear:
+    NODE_ENV: production
