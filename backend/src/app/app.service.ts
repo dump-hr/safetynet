@@ -5,7 +5,8 @@ import { PrismaService } from './prisma.service';
 export class AppService {
   constructor(private prisma: PrismaService) {}
 
-  getHello(): string {
-    return 'Hello World!';
+  async healthCheck(): Promise<string> {
+    await this.prisma.$queryRaw`SELECT 1`;
+    return 'ok';
   }
 }

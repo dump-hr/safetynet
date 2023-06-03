@@ -1,0 +1,80 @@
+service: safetynet
+image: dump-hr/safetynet
+
+registry:
+  server: ghcr.io
+  username: dumpovac
+  password:
+    - MRSK_REGISTRY_PASSWORD
+
+builder:
+  multiarch: false
+
+env:
+  clear:
+    PORT: 3000
+  secret:
+    - DATABASE_URL
+
+accessories:
+  node-exporter:
+    image: prom/node-exporter:latest
+    roles:
+      - web
+    cmd: |
+      --path.procfs=/host/proc \
+      --path.sysfs=/host/sys \
+      --path.rootfs=/rootfs \
+      --collector.filesystem.mount-points-exclude="^/(sys|proc|dev|host|etc)($$|/)" \
+      --collector.processes
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    port: 9100
+
+  promtail:
+    image: grafana/promtail:latest
+    roles:
+      - web
+    cmd: |
+      -config.file=/etc/promtail/config.yml \
+      -config.expand-env=true
+    env:
+      clear:
+        LOKI_HOST: loki.dump.hr
+        LOKI_USERNAME: admin
+      secret:
+        - LOKI_PASSWORD
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    files:
+      - ./config/promtail.yml:/etc/promtail/config.yml
+
+traefik:
+  args:
+    accesslog: true
+    accesslog.format: json
+    accesslog.fields.headers.defaultmode: keep
+    accesslog.fields.headers.names.Authorization: drop
+    accesslog.fields.headers.names.Cookie: drop
+    metrics.prometheus: true
+    api.dashboard: true
+  options:
+    publish:
+      - 8080:8080
+  labels:
+    traefik.http.routers.dashboard.entrypoints: traefik
+    traefik.http.routers.dashboard.rule: PathPrefix(`/api`, `/dashboard`)
+    traefik.http.routers.dashboard.service: api@internal
+    traefik.http.routers.dashboard.middlewares: traefik-auth
+    traefik.http.middlewares.traefik-auth.basicauth.users: admin:$apr1$Jx5I.zf9$OQwbJk/9.rHt9nYd13Dc/0 # TODO
+    # command to generate new password: htpasswd -n admin
+
+healthcheck:
+  path: /app/healthcheck
+  port: 3000
+  max_attempts: 10
+  interval: 10s
+
+audit_broadcast_cmd: config/scripts/mrsk-audit-broadcast.sh
