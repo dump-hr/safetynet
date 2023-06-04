@@ -2,7 +2,7 @@ import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
 import { QuestionService } from './question.service';
 import { Answer, Difficulty } from '@prisma/client';
 import { ParseDifficultyPipe } from 'src/utils/parseDifficultyPipe';
-import { QuestionDto } from './question.dto';
+import { QuestionWithAnswer } from './question.dto';
 
 @Controller('question')
 export class QuestionController {
@@ -11,7 +11,7 @@ export class QuestionController {
   @Get(':difficulty')
   async getQuestions(
     @Param('difficulty', ParseDifficultyPipe) difficulty: Difficulty,
-  ): Promise<QuestionDto[]> {
+  ): Promise<QuestionWithAnswer[]> {
     return await this.questionService.getQuestions(difficulty);
   }
 

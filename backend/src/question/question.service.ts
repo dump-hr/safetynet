@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
 import { Answer, Difficulty } from '@prisma/client';
-import { QuestionDto } from './question.dto';
+import { QuestionWithAnswer } from './question.dto';
 import { exclude } from 'src/utils/exclude';
 import { shuffle } from 'src/utils/shuffle';
 
@@ -11,7 +11,7 @@ const NUMBER_OF_QUESTIONS_PER_GAME = 20;
 export class QuestionService {
   constructor(private prisma: PrismaService) {}
 
-  async getQuestions(difficulty: Difficulty): Promise<QuestionDto[]> {
+  async getQuestions(difficulty: Difficulty): Promise<QuestionWithAnswer[]> {
     const questions = await this.prisma.question.findMany({
       where: {
         difficulty,

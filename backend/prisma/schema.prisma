@@ -20,11 +20,12 @@ model User {
 }
 
 model Score {
-  id        Int      @id @default(autoincrement())
-  value     Int
-  createdAt DateTime @default(now())
-  userId    Int
-  user      User     @relation(fields: [userId], references: [id])
+  id         Int        @id @default(autoincrement())
+  value      Int
+  difficulty Difficulty
+  createdAt  DateTime   @default(now())
+  userId     Int
+  user       User       @relation(fields: [userId], references: [id])
 }
 
 model Question {

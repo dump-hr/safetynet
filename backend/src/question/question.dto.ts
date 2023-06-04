@@ -1,5 +1,5 @@
 import { Answer, Question } from '@prisma/client';
 
-export type QuestionDto = Question & {
+export type QuestionWithAnswer = Question & {
   answers: Omit<Answer, 'isCorrect'>[];
 };
