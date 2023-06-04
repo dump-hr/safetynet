@@ -11,7 +11,41 @@ datasource db {
 }
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  name  String?
+  id         Int      @id @default(autoincrement())
+  name       String
+  school     String
+  birthDate  DateTime
+  createdAt  DateTime @default(now())
+  bestScores Score[]
+}
+
+model Score {
+  id        Int      @id @default(autoincrement())
+  value     Int
+  createdAt DateTime @default(now())
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Question {
+  id         Int        @id @default(autoincrement())
+  value      String
+  points     Int
+  difficulty Difficulty
+  createdAt  DateTime   @default(now())
+  answers    Answer[]
+}
+
+model Answer {
+  id         Int      @id @default(autoincrement())
+  value      String
+  isCorrect  Boolean
+  createdAt  DateTime @default(now())
+  questionId Int
+  question   Question @relation(fields: [questionId], references: [id])
+}
+
+enum Difficulty {
+  Beginner
+  Advanced
 }
