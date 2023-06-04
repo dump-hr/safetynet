@@ -8,7 +8,7 @@ import { QuestionDto } from './question.dto';
 export class QuestionController {
   constructor(private readonly questionService: QuestionService) {}
 
-  @Get('/:difficulty')
+  @Get(':difficulty')
   async getQuestions(
     @Param('difficulty', ParseDifficultyPipe) difficulty: Difficulty,
   ): Promise<QuestionDto[]> {

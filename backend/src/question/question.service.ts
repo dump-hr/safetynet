@@ -35,6 +35,7 @@ export class QuestionService {
         id: answerId,
       },
     });
+
     return answer.isCorrect;
   }
 
@@ -45,6 +46,7 @@ export class QuestionService {
         isCorrect: true,
       },
     });
+
     return answer;
   }
 }
