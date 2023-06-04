@@ -4,8 +4,8 @@ import { ScoreService } from './score.service';
 import { PrismaService } from '../prisma.service';
 
 @Module({
-  imports: [PrismaService],
+  imports: [],
   controllers: [ScoreController],
-  providers: [ScoreService],
+  providers: [ScoreService, PrismaService],
 })
 export class ScoreModule {}
