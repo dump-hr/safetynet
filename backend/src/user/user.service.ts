@@ -24,7 +24,7 @@ export class UserService {
   }
 
   async getBestScoresByUserId(userId: number) {
-    const bestScores = await this.prisma.user.findUniqueOrThrow({
+    const { bestScores } = await this.prisma.user.findUniqueOrThrow({
       where: { id: userId },
       include: {
         bestScores: true,
@@ -40,7 +40,6 @@ export class UserService {
         name: userAndScore.name,
         school: userAndScore.school,
         birthDate: userAndScore.birthDate,
-        bestScores: {},
       },
     });
 
