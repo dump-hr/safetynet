@@ -1,14 +1,14 @@
 import {
   BadRequestException,
+  Controller,
   Get,
-  Injectable,
   Param,
   Post,
 } from '@nestjs/common';
 import { UserAndScoreDto } from './user.dto';
 import { UserService } from './user.service';
 
-@Injectable()
+@Controller('user')
 export class UsersController {
   constructor(private readonly userService: UserService) {}
 
