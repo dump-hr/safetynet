@@ -1,0 +1,29 @@
+$bangers-font-path: '../fonts/Bangers';
+$sofia-sans-font-path: '../fonts/SofiaSans';
+
+@font-face {
+  font-family: 'Bangers';
+  src: url('#{$bangers-font-path}/Bangers-Regular.ttf');
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SofiaSans';
+  src: url('#{$sofia-sans-font-path}/SofiaSans-Regular.ttf');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SofiaSans';
+  src: url('#{$sofia-sans-font-path}/SofiaSans-Medium.ttf');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'SofiaSans';
+  src: url('#{$sofia-sans-font-path}/SofiaSans-Bold.ttf');
+  font-weight: 700;
+  font-display: swap;
+}
