@@ -1,31 +1,31 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
-import { Answer, Difficulty } from '@prisma/client';
+import { Answer, Difficulty, Prisma, Question } from '@prisma/client';
 import { QuestionWithAnswer } from './question.dto';
-import { exclude } from 'src/utils/exclude';
-import { shuffle } from 'src/utils/shuffle';
 
-const NUMBER_OF_QUESTIONS_PER_GAME = 20;
+const NUMBER_OF_QUESTIONS_PER_GAME = 5;
 
 @Injectable()
 export class QuestionService {
   constructor(private prisma: PrismaService) {}
 
   async getQuestions(difficulty: Difficulty): Promise<QuestionWithAnswer[]> {
-    const questions = await this.prisma.question.findMany({
-      where: {
-        difficulty,
-      },
-      include: {
-        answers: true,
-      },
-    });
+    const questions = await this.prisma.$queryRaw<Question[]>`
+      SELECT "id", "value", "points", "difficulty", "createdAt"
+      FROM "Question"
+      WHERE "difficulty" = ${difficulty}::"Difficulty"
+      ORDER BY RANDOM()
+      LIMIT ${NUMBER_OF_QUESTIONS_PER_GAME}
+    `;
+    const answers = await this.prisma.$queryRaw<Answer[]>`
+      SELECT "id", "value", "questionId"
+      FROM "Answer"
+      WHERE "questionId" IN (${Prisma.join(questions.map((q) => q.id))})
+    `;
 
-    shuffle(questions);
-
-    return questions.slice(0, NUMBER_OF_QUESTIONS_PER_GAME).map((q) => ({
+    return questions.map((q) => ({
       ...q,
-      answers: q.answers.map((a) => exclude(a, ['isCorrect'])),
+      answers: answers.filter((a) => a.questionId === q.id),
     }));
   }
 
