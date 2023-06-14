@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef } from 'react';
 
 export const useTimeout = (callback: () => void, delay: number) => {
   const timeoutRef = useRef(0);
@@ -11,7 +11,7 @@ export const useTimeout = (callback: () => void, delay: number) => {
   useEffect(() => {
     const tick = () => savedCallback.current();
 
-    if (typeof delay === "number") {
+    if (typeof delay === 'number') {
       timeoutRef.current = window.setTimeout(tick, delay);
 
       return () => window.clearTimeout(timeoutRef.current);

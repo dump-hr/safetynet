@@ -1,4 +1,7 @@
+import AboutPage from '@pages/AboutPage';
 import HomePage from '@pages/HomePage';
+import ParentsPage from '@pages/ParentsPage';
+import QuizPage from '@pages/QuizPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 export enum Page {
@@ -25,12 +28,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path={routes[Page.Quiz]} element={<></>} />
-        <Route path={routes[Page.Settings]} element={<></>} />
+        <Route path={routes[Page.Quiz]} element={<QuizPage />} />
         <Route path={routes[Page.ReadingMaterials]} element={<></>} />
-        <Route path={routes[Page.Parents]} element={<></>} />
+        <Route path={routes[Page.Parents]} element={<ParentsPage />} />
         <Route path={routes[Page.Leaderboard]} element={<></>} />
-        <Route path={routes[Page.About]} element={<></>} />
+        <Route path={routes[Page.About]} element={<AboutPage />} />
         <Route path={routes[Page.Home]} element={<HomePage />} />
       </Routes>
     </BrowserRouter>

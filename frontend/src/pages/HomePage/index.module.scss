@@ -1049,70 +1049,6 @@ a {
     bottom: 60px;
   }
 }
-.about {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-.about__wrapper {
-  width: 90%;
-  color: #fff;
-  text-align: center;
-}
-.content__logo {
-  margin-top: 20px;
-}
-.about__header {
-  padding-bottom: 15px;
-  color: #05e6ff;
-  font-weight: 400;
-  text-shadow: 0 0 0.2em rgba(0, 236, 252, 0.5);
-}
-.about__container {
-  width: 100%;
-  height: 80%;
-  background-color: rgba(4, 48, 83, 0.7);
-  box-shadow: 0 0 8.5em 1em rgba(20, 116, 143, 0.5);
-  border: 2px solid #14748f;
-}
-.about__content {
-  margin: 20px;
-  margin-bottom: 30px;
-}
-.about__text {
-  height: 200px;
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  overflow-y: scroll;
-}
-.about__text::-webkit-scrollbar {
-  border-radius: 5px;
-  width: 8px;
-  background-color: rgba(0, 0, 0, 0.15);
-}
-.about__text::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 10px;
-}
-.about__return {
-  color: #05e6ff;
-  background-color: #05567c;
-  border: 2px solid #1593b7;
-  margin-top: 25px;
-  padding: 10px;
-  text-align: center;
-  font-size: 18px;
-  font-weight: 500;
-  transition-duration: 0.15s;
-}
-@media screen and (min-width: 768px) {
-  .about__wrapper {
-    width: 60%;
-  }
-}
 .difficulty {
   display: flex;
   height: 100vh;
@@ -1318,24 +1254,7 @@ a {
     margin-bottom: 9px;
   }
 }
-.parents-materials__container {
-  text-align: center;
-  height: 100vh;
-  padding-top: 50px;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-.parents__container {
-  margin: 0 auto;
-  max-width: 80%;
-  max-height: 60%;
-  padding: 10px;
-  border: 2px solid #14748f;
-  background-color: rgba(4, 48, 83, 0.7);
-  box-shadow: 0 0 90px 10px rgba(20, 116, 143, 0.5);
-  text-align: center;
-}
+
 .title {
   margin-top: 80px;
   font-size: 60px;
@@ -1343,22 +1262,7 @@ a {
   color: #05e6ff;
   text-shadow: 0 0 15px rgba(0, 236, 252, 0.5);
 }
-.parents__content {
-  display: flex;
-  flex-direction: row;
-  margin-top: 30px;
-}
-.parents__content--right {
-  text-align: left;
-  margin-bottom: 100px;
-  -webkit-margin-before: 0;
-  -webkit-margin-after: 0;
-  -webkit-margin-start: 0;
-  -webkit-margin-end: 0;
-  -webkit-padding-start: 20px;
-  border-left: 2px solid #14748f;
-  flex-basis: 50%;
-}
+
 .right__item {
   list-style: none;
   font-size: 15px;
@@ -1368,13 +1272,7 @@ a {
   -webkit-padding-start: 0;
   text-shadow: 0 0 5px rgba(0, 236, 252, 0.5);
 }
-.parents__content--left {
-  overflow: auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-items: center;
-}
+
 .left__item--inner {
   display: block;
   width: 190px;
@@ -1405,83 +1303,29 @@ a {
 .left__item--title {
   font-size: 16px;
 }
-.parents__button {
-  position: absolute;
-  bottom: 9%;
-  left: calc(50% - 104px);
-  margin: 0;
-  padding: 4px 20px 5px;
-  transition: all 0.2s ease-in-out;
-}
-.parents__button:active,
-.parents__button:hover {
-  color: #fff;
-  background-color: #066490;
-  border-color: #15a9d3;
-}
-.parents__content--right-title {
-  font-size: 25px;
-  line-height: 1.35;
-  font-family: Exo\2, sans-serif;
-  color: #fff;
-  padding-bottom: 0;
-}
 @media (max-width: 3000px) {
-  .parents__container {
-    padding-left: 0;
-    max-height: 65%;
-    overflow: auto;
-  }
   .left__item--inner {
     padding: 5px;
     width: 199px;
   }
 }
 @media (max-width: 1645px) {
-  .parents__content--left {
-    justify-content: flex-start;
-  }
   .left__item--inner {
     padding: 0 5px;
   }
-  .parents__button {
-    bottom: 4%;
-  }
 }
 @media (max-width: 1440px) {
-  .parents__container {
-    max-height: 50%;
-    overflow: auto;
-  }
   .left__item--inner {
     padding: 10px;
   }
-  .parents__button {
-    position: absolute;
-    bottom: 4%;
-    left: calc(50% - 100px);
-    padding: 10px 20px;
-  }
 }
-@media (max-width: 1440px) and (max-height: 1050px) {
-  .parents__button {
-    left: calc(50% - 100px);
-    padding: 10px 20px;
-  }
-}
+
 @media (max-width: 480px) {
-  .parents__content--left {
-    justify-content: center;
-  }
   .column {
     overflow: auto;
     padding-top: 15%;
   }
-  .parents__container {
-    max-height: 65%;
-    overflow: auto;
-    padding-left: 0;
-  }
+
   .title {
     font-size: 40px;
     margin-top: 40px;
@@ -1500,16 +1344,8 @@ a {
   .left__item--image {
     height: 107px;
   }
-  .parents__button {
-    position: absolute;
-    left: calc(50% - 55px);
-  }
 }
-@media screen and (max-width: 768px) {
-  .parents__content {
-    flex-direction: column;
-  }
-}
+
 .settings__section:not(:first-of-type) {
   margin-top: 20px;
 }
