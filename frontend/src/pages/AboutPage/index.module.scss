@@ -1,0 +1,115 @@
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.about__wrapper {
+  width: 90%;
+  color: #fff;
+  text-align: center;
+  max-width: 768px;
+}
+.content__logo {
+  margin-top: 20px;
+}
+.about__header {
+  padding-bottom: 15px;
+  color: #05e6ff;
+  font-weight: 400;
+  text-shadow: 0 0 0.2em rgba(0, 236, 252, 0.5);
+}
+.about__container {
+  width: 100%;
+  height: 80%;
+  background-color: rgba(4, 48, 83, 0.7);
+  box-shadow: 0 0 8.5em 1em rgba(20, 116, 143, 0.5);
+  border: 2px solid #14748f;
+}
+.about__content {
+  margin: 20px;
+  margin-bottom: 30px;
+}
+.about__text {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  overflow-y: scroll;
+  text-align: left;
+  line-height: 1.5;
+}
+.about__text::-webkit-scrollbar {
+  border-radius: 5px;
+  width: 8px;
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.about__text::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+.about__return {
+  color: #05e6ff;
+  background-color: #05567c;
+  border: 2px solid #1593b7;
+  margin-top: 25px;
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  transition-duration: 0.15s;
+}
+@media screen and (min-width: 768px) {
+  .about__wrapper {
+    width: 60%;
+  }
+}
+
+// Todo: refactor to shared
+.content__logo {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 900;
+  margin: 0 auto;
+  padding: 0;
+  font-style: italic;
+  font-size: 92px;
+  position: relative;
+  display: table;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 1px 5px 5px #00454d, 0 0 0 #000, 1px 5px 5px #00454d;
+  transition-duration: 0.125s;
+}
+.content__logo:after {
+  content: 'bitka za sigurnost';
+  text-transform: uppercase;
+  position: absolute;
+  right: 0;
+  top: 90%;
+  font-size: 30%;
+  letter-spacing: 1.5px;
+  color: #05e6ff;
+  text-shadow: 2px 2px 2px #00454d, 2px -2px 2px #00454d, -2px 2px 2px #00454d,
+    -2px -2px 2px #00454d;
+}
+
+@media (max-width: 1500px) {
+  .content__logo {
+    font-size: 81px;
+  }
+}
+@media (max-width: 1200px) {
+  .content__logo {
+    font-size: 74px;
+  }
+}
+@media (max-width: 500px) {
+  .content__logo {
+    font-size: 48px;
+  }
+}
+@media (max-width: 350px) {
+  .content__logo {
+    font-size: 40px;
+  }
+}
