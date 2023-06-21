@@ -9,6 +9,9 @@ const ParentsPage = () => {
   const documentsStorageUrl = `${storageBaseUrl}Documents/`;
   const imagesStorageUrl = `${storageBaseUrl}Images/ParentsSection/`;
 
+  const imageUrl = (filename: string) =>
+    !!filename ? `${imagesStorageUrl}${filename}` : 'study-material.jpg';
+
   const [materials, setMaterials] = useState([
     {
       document: 'zabavni_sadrzaj_na_internetu.pdf',
@@ -107,12 +110,40 @@ const ParentsPage = () => {
       title: 'Kviz',
     },
     {
-      url: 'http://www.sigurnijiinternet.hr/djeca/kviz-sigurnost/',
-      title: 'Kviz',
+      url: 'http://www.sigurnijiinternet.hr/djeca/opasnosti-facebooka-brosura/',
+      title: 'O Facebook-u',
     },
     {
-      url: 'http://www.sigurnijiinternet.hr/djeca/kviz-sigurnost/',
-      title: 'Kviz',
+      url: 'http://www.carnet.hr/ictedu/edukativni_sadrzaji',
+      title: 'Edukativni sadržaji CARNET-a',
+    },
+    {
+      url: 'http://www.sigurnijiinternet.hr/djeca/sto-je-cyberbullying/',
+      title: 'Što se sve smatra zlostavljanjem na internetu?',
+    },
+    {
+      url: 'https://www.youtube.com/watch?v=JRCOX_zAtKk',
+      title: 'VIDEO: Tko se to šali s mojim podacima?',
+    },
+    {
+      url: 'https://www.youtube.com/watch?v=WyXIZuYDp4Y',
+      title: 'VIDEO: Europolova kampanja protiv on-line iskorištavanja djece',
+    },
+    {
+      url: 'https://www.youtube.com/watch?v=boHzY1V1oCU',
+      title: 'VIDEO: Mobile Malware',
+    },
+    {
+      url: 'https://www.youtube.com/watch?v=XL6UgJYVq2c',
+      title: 'VIDEO: #dontbeaMule Što su finacijske mule?',
+    },
+    {
+      url: 'https://www.youtube.com/watch?v=0bEub_dZnuY',
+      title: 'VIDEO: Što se Tini dogodilo?',
+    },
+    {
+      url: 'https://www.youtube.com/watch?v=53OaQ1y0i04',
+      title: 'VIDEO: Nemoj postati lovina',
     },
   ]);
 
@@ -132,11 +163,7 @@ const ParentsPage = () => {
                   >
                     <img
                       className={styles.left__item__image}
-                      src={
-                        !!material.image
-                          ? `${imagesStorageUrl}${material.image}`
-                          : 'study-material.jpg'
-                      }
+                      src={imageUrl(material.image)}
                     />
                     <div className={styles.left__item__title}>
                       {material.title}
