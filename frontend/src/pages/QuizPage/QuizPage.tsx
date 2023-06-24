@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useGetQuestions } from '@/api';
 import ChooseDifficulty from './ChooseDifficulty';
 import Game from './Game';
-import Loading from './Loading';
+import Loading from '@/components/Loading';
 import styles from './index.module.scss';
 import { Link } from 'react-router-dom';
 import { Page, routes } from '@/App';
