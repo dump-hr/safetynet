@@ -1,0 +1,69 @@
+.content {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.content__container {
+  width: 475px;
+  transition-duration: 0.125s;
+}
+.content__menu {
+  margin-top: 10px;
+  background-color: rgba(4, 48, 83, 0.7);
+  box-shadow: 0 0 8.5em 1em rgba(20, 116, 143, 0.5);
+  border: 2px solid #14748f;
+}
+.content__logo {
+  font-family: 'Exo 2', sans-serif;
+  font-weight: 900;
+  margin: 0 auto;
+  padding: 0;
+  font-style: italic;
+  font-size: 92px;
+  position: relative;
+  display: table;
+  letter-spacing: 1px;
+  color: #fff;
+  text-shadow: 1px 5px 5px #00454d, 0 0 0 #000, 1px 5px 5px #00454d;
+  transition-duration: 0.125s;
+}
+.content__logo:after {
+  content: 'bitka za sigurnost';
+  text-transform: uppercase;
+  position: absolute;
+  right: 0;
+  top: 90%;
+  font-size: 30%;
+  letter-spacing: 1.5px;
+  color: #05e6ff;
+  text-shadow: 2px 2px 2px #00454d, 2px -2px 2px #00454d, -2px 2px 2px #00454d,
+    -2px -2px 2px #00454d;
+}
+.menu__container {
+  margin: 45px;
+  color: #fff;
+  font-size: 20px;
+}
+.menu__item {
+  color: #05e6ff;
+  background-color: #05567c;
+  border: 2px solid #1593b7;
+  margin-bottom: 17px;
+  padding: 10px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 500;
+  transition-duration: 0.15s;
+}
+.menu__item:hover {
+  background-color: #066490;
+  border-color: #15a9d3;
+  color: #fff;
+  cursor: pointer;
+}
+.error_message {
+  margin-bottom: 24px;
+  color: rgba(255, 0, 0, 0.7);
+}

@@ -19,5 +19,8 @@ export const useGetQuestions = (difficulty?: Difficulty) => {
     queryFn: () => getQuestions(difficulty),
     enabled: difficulty !== null && difficulty !== undefined,
     staleTime: Infinity,
+    onError: (error) => {
+      console.error(error);
+    },
   });
 };

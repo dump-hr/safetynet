@@ -1,3 +1,54 @@
+.position__timer {
+  display: none;
+  position: absolute;
+  width: 10%;
+  text-align: center;
+  font-size: 50px;
+  font-weight: 700;
+  left: 0;
+  right: 0;
+  top: 15px;
+  margin: 0 auto;
+  animation-fill-mode: forwards;
+}
+@media (max-width: 480px) {
+  .position__timer {
+    top: 50px;
+    font-size: 40px;
+  }
+  .out-of-time {
+    top: 65px;
+    width: 60%;
+    font-size: 20px;
+  }
+}
+.points--message {
+  color: #05e6ff;
+}
+.points--slide {
+  display: inline-block;
+  opacity: 0;
+  animation: none;
+}
+.animate__timer {
+  animation-name: slide;
+  animation-timing-function: ease-in-out;
+}
+@keyframes slide {
+  0% {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 .game {
   max-width: 80%;
   width: 1000px;

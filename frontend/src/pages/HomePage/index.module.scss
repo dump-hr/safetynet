@@ -45,75 +45,7 @@ a {
   text-shadow: 2px 2px 2px #00454d, 2px -2px 2px #00454d, -2px 2px 2px #00454d,
     -2px -2px 2px #00454d;
 }
-.loading__container {
-  padding-top: 5%;
-  line-height: 1.35;
-}
-.loading__content {
-  margin: 0;
-  font-size: 10px;
-  color: #fff;
-}
-.loader,
-.loading__content {
-  padding: 0;
-  font-family: Exo\2, sans-serif;
-}
-.loader {
-  font-size: 15px;
-  position: relative;
-  width: 4em;
-  height: 1em;
-  margin: 0.7em auto;
-  display: block;
-  line-height: 1.35;
-  -webkit-tap-highlight-color: transparent;
-}
-.dot {
-  width: 1em;
-  height: 1em;
-  border-radius: 0.5em;
-  background: #05e6ff;
-  position: absolute;
-  animation-duration: 0.5s;
-  animation-timing-function: ease;
-  animation-iteration-count: infinite;
-}
-.dot1 {
-  animation-name: reveal;
-}
-.dot2,
-.dot3 {
-  animation-name: moveDot;
-}
-.dot3 {
-  left: 25px;
-}
-.dot4 {
-  animation-name: reveal;
-  animation-direction: reverse;
-  left: 50px;
-}
-.loading__text {
-  font-size: 30px;
-  padding-top: 20px;
-  padding-left: 40px;
-  color: #05e6ff;
-  text-align: center;
-}
-@keyframes moveDot {
-  to {
-    transform: translateX(25px);
-  }
-}
-@keyframes reveal {
-  0% {
-    transform: scale(0.001);
-  }
-  to {
-    transform: scale(1);
-  }
-}
+
 .content {
   height: 100vh;
   display: flex;
@@ -383,8 +315,7 @@ a {
   color: #05e6ff;
   text-align: center;
 }
-.points,
-.position__timer {
+.points {
   display: none;
   position: absolute;
   width: 10%;
@@ -401,15 +332,6 @@ a {
   width: 30%;
   color: red;
   font-size: 30px;
-}
-.points--message {
-  color: #05e6ff;
-}
-.points--slide {
-  display: inline-block;
-  opacity: 0;
-  animation: none;
-  animation-duration: 3s;
 }
 .animate__timer {
   animation-name: slide;
@@ -658,15 +580,6 @@ a {
   }
 }
 @media (max-width: 480px) {
-  .position__timer {
-    top: 50px;
-    font-size: 40px;
-  }
-  .out-of-time {
-    top: 65px;
-    width: 60%;
-    font-size: 20px;
-  }
   .ui__points-new {
     top: 20px;
     right: -50px;
