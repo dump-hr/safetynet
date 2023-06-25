@@ -13,12 +13,7 @@ const QuizPage = () => {
   const [showTutorial, setShowTutorial] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
 
-  const {
-    data: questions,
-    isError,
-    error,
-    isLoading,
-  } = useGetQuestions(difficulty);
+  const { data: questions, isError, isLoading } = useGetQuestions(difficulty);
 
   const reset = () => {
     setDifficulty(null);
