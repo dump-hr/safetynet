@@ -1,3 +1,4 @@
+// ToDo: Refactor to shared styles/components
 .content {
   height: 100vh;
   display: flex;
@@ -42,9 +43,7 @@
     -2px -2px 2px #00454d;
 }
 .menu__container {
-  margin: 45px;
-  color: #fff;
-  font-size: 20px;
+  margin: 50px 45px;
 }
 .menu__item {
   color: #05e6ff;
@@ -63,7 +62,42 @@
   color: #fff;
   cursor: pointer;
 }
-.error_message {
-  margin-bottom: 24px;
-  color: rgba(255, 0, 0, 0.7);
+
+@media (max-width: 1200px) {
+  .menu__container {
+    margin: 30px;
+  }
+  .menu__item {
+    font-size: 18px;
+    padding: 6px;
+    margin-bottom: 10px;
+  }
+  .content__container {
+    width: 380px;
+  }
+  .content__logo {
+    font-size: 74px;
+  }
+}
+@media (max-width: 500px) {
+  .content__container {
+    width: 250px;
+  }
+  .content__logo {
+    font-size: 48px;
+  }
+  .menu__item {
+    font-size: 16px;
+  }
+}
+@media (max-width: 350px) {
+  .content {
+    text-align: center;
+  }
+  .content__logo {
+    font-size: 40px;
+  }
+  .content__container {
+    width: 100%;
+  }
 }

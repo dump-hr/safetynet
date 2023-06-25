@@ -1,7 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma.service';
-import { Answer, Difficulty, Prisma, Question } from '@prisma/client';
+import { Answer, Difficulty, Question } from '@prisma/client';
 import { QuestionWithAnswer } from './question.dto';
+import { shuffle } from 'src/utils/shuffle';
+import { exclude } from 'src/utils/exclude';
 
 const NUMBER_OF_QUESTIONS_PER_GAME = 5;
 
@@ -10,6 +12,7 @@ export class QuestionService {
   constructor(private prisma: PrismaService) {}
 
   async getQuestions(difficulty: Difficulty): Promise<QuestionWithAnswer[]> {
+    // raw sql required because prisma does not support "ORDER BY RANDOM()"
     const questions = await this.prisma.$queryRaw<Question[]>`
       SELECT "id", "value", "points", "difficulty", "createdAt"
       FROM "Question"
@@ -17,15 +20,19 @@ export class QuestionService {
       ORDER BY RANDOM()
       LIMIT ${NUMBER_OF_QUESTIONS_PER_GAME}
     `;
-    const answers = await this.prisma.$queryRaw<Answer[]>`
-      SELECT "id", "value", "questionId"
-      FROM "Answer"
-      WHERE "questionId" IN (${Prisma.join(questions.map((q) => q.id))})
-    `;
+    const answers = await this.prisma.answer.findMany({
+      where: {
+        questionId: { in: questions.map((q) => q.id) },
+      },
+    });
 
     return questions.map((q) => ({
       ...q,
-      answers: answers.filter((a) => a.questionId === q.id),
+      answers: shuffle(
+        answers
+          .filter((a) => a.questionId === q.id)
+          .map((a) => exclude(a, ['isCorrect'])),
+      ),
     }));
   }
 
