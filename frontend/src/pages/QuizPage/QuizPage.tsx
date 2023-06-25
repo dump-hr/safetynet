@@ -11,14 +11,10 @@ import { Page, routes } from '@/App';
 const QuizPage = () => {
   const [difficulty, setDifficulty] = useState<Difficulty>(null);
   const [showTutorial, setShowTutorial] = useState(false);
+  const [gameEnded, setGameEnded] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
 
   const { data: questions, isError, isLoading } = useGetQuestions(difficulty);
-
-  const reset = () => {
-    setDifficulty(null);
-    setQuestionIndex(0);
-  };
 
   if (difficulty === null) {
     return <ChooseDifficulty setDifficulty={setDifficulty} />;
@@ -26,6 +22,10 @@ const QuizPage = () => {
 
   if (showTutorial) {
     return <div>tutorial</div>;
+  }
+
+  if (gameEnded) {
+    return <div>game ended</div>;
   }
 
   if (isLoading) {
@@ -59,6 +59,11 @@ const QuizPage = () => {
       question={questions[questionIndex]}
       questionNumber={questionIndex + 1}
       questionCount={questions.length}
+      next={() =>
+        questionIndex + 1 < questions.length
+          ? setQuestionIndex((prev) => prev + 1)
+          : setGameEnded(true)
+      }
     />
   );
 };

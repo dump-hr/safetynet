@@ -1,29 +1,36 @@
 import { QuestionWithAnswer } from '@/types';
 import styles from './index.module.scss';
 import clsx from 'clsx';
-import useCountdown from '@hooks/useCountdown';
-import { useState } from 'react';
+import useCountdown from '@/hooks/useCountdown';
+import { useEffect, useState } from 'react';
 import { useGetCorrectAnswer } from '@/api';
 
 type Props = {
   question: QuestionWithAnswer;
   questionNumber: number;
   questionCount: number;
+  next: () => void;
 };
 
 const letters = 'ABCD';
-const delaySeconds = 1;
+const delaySeconds = 3;
 
-const Game: React.FC<Props> = ({ question, questionNumber, questionCount }) => {
-  const { count: delaySecondsLeft } = useCountdown(delaySeconds);
-
-  const [selectedAnswerId, setSelectedAnswerId] = useState<number | null>(null);
+const Game: React.FC<Props> = ({
+  question,
+  questionNumber,
+  questionCount,
+  next,
+}) => {
+  const { count: delaySecondsLeft, reset: resetDelayCountdown } =
+    useCountdown(delaySeconds);
 
   const {
     data: correctAnswer,
     refetch: fetchCorrectAnswer,
     isFetched: isCorrectAnswerFetched,
   } = useGetCorrectAnswer(question.id);
+
+  const [selectedAnswerId, setSelectedAnswerId] = useState<number | null>(null);
 
   const handleAnswerClick = (answerId: number) => {
     if (delaySecondsLeft > 0 || selectedAnswerId !== null) {
@@ -33,6 +40,17 @@ const Game: React.FC<Props> = ({ question, questionNumber, questionCount }) => {
     fetchCorrectAnswer();
   };
 
+  useEffect(() => {
+    if (!isCorrectAnswerFetched) {
+      return;
+    }
+    setTimeout(() => {
+      next();
+      resetDelayCountdown();
+      setSelectedAnswerId(null);
+    }, 1000);
+  }, [correctAnswer]);
+
   return (
     <>
       <div
@@ -40,12 +58,15 @@ const Game: React.FC<Props> = ({ question, questionNumber, questionCount }) => {
           styles.position__timer,
           styles['points--message'],
           styles['points--slide'],
-          styles['animate__timer']
+          {
+            [styles.animate__timer]: delaySecondsLeft > 0,
+          }
         )}
         style={{ animationDuration: `${delaySeconds + 1}s` }}
       >
         <span>{delaySecondsLeft}</span>
       </div>
+
       <div className={styles.game}>
         <div className={styles.game__information}>
           {questionNumber}/{questionCount}
@@ -58,16 +79,17 @@ const Game: React.FC<Props> = ({ question, questionNumber, questionCount }) => {
                 <div className={styles['game-list__index']}>
                   {letters[answerIndex]}
                 </div>
+
                 <div
                   className={clsx(
                     styles['game-list__inner'],
                     styles['game-list__inner--active'],
                     {
-                      [styles['answer__disabled']]: delaySecondsLeft > 0,
-                      [styles['answer__correct']]:
+                      [styles.answer__disabled]: delaySecondsLeft > 0,
+                      [styles.answer__correct]:
                         isCorrectAnswerFetched &&
                         answer.id === correctAnswer.id,
-                      [styles['answer__incorrect']]:
+                      [styles.answer__incorrect]:
                         isCorrectAnswerFetched &&
                         answer.id !== correctAnswer.id &&
                         selectedAnswerId !== correctAnswer.id,
