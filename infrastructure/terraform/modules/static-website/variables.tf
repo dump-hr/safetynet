@@ -1,5 +1,5 @@
 variable "bucket_name" {
-  description = "The name of the S3 bucket. Must be globally unique."
+  description = "Name of the S3 bucket. Must be globally unique."
   type        = string
 }
 
@@ -10,7 +10,7 @@ variable "bucket_versioning" {
 }
 
 variable "website_domain" {
-  description = "The domain name for static website."
+  description = "Domain name for static website."
   type        = string
 }
 
