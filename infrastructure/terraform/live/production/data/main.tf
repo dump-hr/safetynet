@@ -54,6 +54,12 @@ module "frontend" {
   cloudflare_zone_id = "b21704208d240237d4c4484318481bff"
   single_page_app    = true
 
+  tags = {
+    Project     = "safetynet"
+    Role        = "frontend"
+    Environment = "production"
+  }
+
   providers = {
     aws.us-east-1 = aws.us-east-1
   }

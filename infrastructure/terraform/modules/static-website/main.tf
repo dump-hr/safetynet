@@ -4,6 +4,13 @@
 resource "aws_s3_bucket" "website" {
   bucket        = var.bucket_name
   force_destroy = true
+
+  tags = merge(
+    {
+      ManagedBy = "terraform"
+    },
+    var.tags
+  )
 }
 
 resource "aws_s3_bucket_public_access_block" "website" {
@@ -51,6 +58,7 @@ resource "aws_cloudfront_distribution" "website" {
   price_class         = "PriceClass_200"
   aliases             = [var.website_domain]
   depends_on          = [aws_acm_certificate_validation.website]
+  wait_for_deployment = var.wait_for_cdn_deployment
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
@@ -92,6 +100,13 @@ resource "aws_cloudfront_distribution" "website" {
       restriction_type = "none"
     }
   }
+
+  tags = merge(
+    {
+      ManagedBy = "terraform"
+    },
+    var.tags
+  )
 }
 
 resource "aws_cloudfront_origin_access_identity" "website" {
@@ -107,13 +122,20 @@ resource "cloudflare_record" "website" {
   type            = "CNAME"
   proxied         = true
   allow_overwrite = true
-  comment         = "Managed by Terraform"
+  comment         = "Managed by terraform"
 }
 
 resource "aws_acm_certificate" "website" {
   domain_name       = var.website_domain
   validation_method = "DNS"
   provider          = aws.us-east-1
+
+  tags = merge(
+    {
+      ManagedBy = "terraform"
+    },
+    var.tags
+  )
 }
 
 resource "aws_acm_certificate_validation" "website" {
@@ -137,5 +159,5 @@ resource "cloudflare_record" "website_certificate_validation" {
   ttl             = 60
   type            = each.value.type
   zone_id         = var.cloudflare_zone_id
-  comment         = "Managed by Terraform"
+  comment         = "Managed by terraform"
 }

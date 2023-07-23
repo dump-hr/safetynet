@@ -14,7 +14,19 @@ variable "single_page_app" {
   default     = false
 }
 
+variable "wait_for_cdn_deployment" {
+  description = "Wait for CDN deployment."
+  type        = bool
+  default     = true
+}
+
 variable "cloudflare_zone_id" {
   description = "Cloudflare zone id for website domain."
   type        = string
+}
+
+variable "tags" {
+  type        = map(string)
+  default     = {}
+  description = "tags for the static website"
 }
