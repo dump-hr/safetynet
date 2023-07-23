@@ -39,6 +39,6 @@ variable "enable_nat_gateway" {
 
 variable "tags" {
   type        = map(string)
-  default     = {}
   description = "tags for the static website"
+  default     = {}
 }

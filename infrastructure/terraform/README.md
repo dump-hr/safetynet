@@ -41,3 +41,4 @@ Names can be found in `shared/tfstate/main.tf`.
 ## Learning resources
 
 - [DevOps with Terraform](https://cloudcasts.io/course/terraform) `course` `3h 43m`
+- [Terraform: Up & Running](https://www.terraformupandrunning.com/) `book` `457 pages`
