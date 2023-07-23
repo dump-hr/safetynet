@@ -50,6 +50,7 @@ module "assets" {
   source = "../../../modules/static-website"
 
   bucket_name        = "safetynet-assets"
+  bucket_versioning  = true
   website_domain     = "safetynet-assets.dump.hr"
   cloudflare_zone_id = "b21704208d240237d4c4484318481bff"
 

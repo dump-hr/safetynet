@@ -3,6 +3,12 @@ variable "bucket_name" {
   type        = string
 }
 
+variable "bucket_versioning" {
+  description = "Enable versioning for the S3 bucket."
+  type        = bool
+  default     = false
+}
+
 variable "website_domain" {
   description = "The domain name for static website."
   type        = string

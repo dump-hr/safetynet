@@ -38,6 +38,13 @@ data "aws_iam_policy_document" "website" {
   }
 }
 
+resource "aws_s3_bucket_versioning" "website" {
+  bucket = aws_s3_bucket.website.id
+  versioning_configuration {
+    status = var.bucket_versioning ? "Enabled" : "Disabled"
+  }
+}
+
 #####################
 # cdn
 
