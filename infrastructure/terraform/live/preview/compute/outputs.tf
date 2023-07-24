@@ -1,3 +1,7 @@
-output "backend_ip" {
-  value = module.backend.instance_ips[0]
+output "api_ips" {
+  value = module.api.instance_ips
+}
+
+output "api_endpoint" {
+  value = module.api.website_endpoint
 }

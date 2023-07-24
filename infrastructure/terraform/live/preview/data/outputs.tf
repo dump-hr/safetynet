@@ -1,3 +1,3 @@
-output "frontend_endpoint" {
-  value = module.frontend.website_endpoint
+output "web_endpoint" {
+  value = module.web.website_endpoint
 }

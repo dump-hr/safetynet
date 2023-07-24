@@ -43,6 +43,18 @@ variable "create_elastic_ip" {
   default     = true
 }
 
+variable "website_domain" {
+  description = "Domain name for hosted website."
+  type        = string
+  default     = ""
+}
+
+variable "cloudflare_zone_id" {
+  description = "Cloudflare zone id for website domain."
+  type        = string
+  default     = ""
+}
+
 variable "tags" {
   type        = map(string)
   description = "tags for ec2 instances"

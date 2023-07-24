@@ -1,9 +1,7 @@
 output "cloudfront_endpoint" {
-  value       = aws_cloudfront_distribution.website.domain_name
-  description = "Endpoint for Cloudfront distribution"
+  value = aws_cloudfront_distribution.website.domain_name
 }
 
 output "website_endpoint" {
-  value       = cloudflare_record.website.hostname
-  description = "Endpoint for static website"
+  value = cloudflare_record.website.hostname
 }

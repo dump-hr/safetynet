@@ -22,6 +22,11 @@ resource "aws_instance" "instance" {
     delete_on_termination = true
   }
 
+  lifecycle {
+    create_before_destroy = true
+    ignore_changes        = [ami]
+  }
+
   tags = merge(
     {
       Name      = "${var.name_prefix}-${count.index + 1}"
@@ -47,4 +52,17 @@ resource "aws_eip_association" "eip_assoc" {
   count         = (var.create_elastic_ip) ? var.instance_count : 0
   instance_id   = aws_instance.instance[count.index].id
   allocation_id = aws_eip.eip[count.index].id
+}
+
+# TODO: implement AWS ALB when var.instance_count > 1
+
+resource "cloudflare_record" "website" {
+  count           = (var.website_domain != "" && var.cloudflare_zone_id != "") ? 1 : 0
+  zone_id         = var.cloudflare_zone_id
+  name            = var.website_domain
+  value           = aws_eip.eip[0].public_ip
+  type            = "A"
+  proxied         = true
+  allow_overwrite = true
+  comment         = "Managed by terraform"
 }

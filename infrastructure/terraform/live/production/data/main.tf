@@ -46,17 +46,17 @@ data "sops_file" "secrets" {
   source_file = "secrets.enc.json"
 }
 
-module "frontend" {
+module "web" {
   source = "../../../modules/static-website"
 
-  bucket_name        = "safetynet-frontend-production"
-  website_domain     = "safetynet-frontend-production.dump.hr"
+  bucket_name        = "safetynet-web-production"
+  website_domain     = "safetynet-web-production.dump.hr"
   cloudflare_zone_id = "b21704208d240237d4c4484318481bff"
   single_page_app    = true
 
   tags = {
     Project     = "safetynet"
-    Role        = "frontend"
+    Role        = "web"
     Environment = "production"
   }
 
