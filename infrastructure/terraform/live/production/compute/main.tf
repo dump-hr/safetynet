@@ -31,7 +31,7 @@ module "backend" {
   instance_root_device_size = 12
   subnets                   = data.aws_subnets.public_subnets.ids
   security_groups           = data.aws_security_groups.public_sg.ids
-  # key_pair =
+  ssh_public_key            = file("../../../../ssh-keys/production.pub")
 
   tags = {
     Project     = "safetynet"

@@ -32,10 +32,9 @@ variable "security_groups" {
   default     = []
 }
 
-variable "key_pair" {
+variable "ssh_public_key" {
   type        = string
-  description = "key pair name"
-  default     = null
+  description = "EC2 instance ssh public key"
 }
 
 variable "create_elastic_ip" {

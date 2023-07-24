@@ -9,7 +9,7 @@ if [ -z "$TF_ENV" ] || [ -z "$TF_STATE" ]; then
 fi
 
 shift 2
-cd -P -- "$(dirname -- "$0")" || exit
+cd -P -- "$(dirname -- "$0")" || exit 1
 
 if [ ! -d "live/$TF_ENV" ]; then
   echo "Environment '$TF_ENV' does not exist"
