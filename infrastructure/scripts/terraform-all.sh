@@ -15,13 +15,13 @@ if [ ! -d "../terraform/live/$TF_ENV" ]; then
   exit 1
 fi
 
-TF_STATES_BY_PRIORITY="tfstate network data compute"
+TF_COMPONENTS_BY_PRIORITY="tfstate network data compute"
 
-for TF_STATE in $TF_STATES_BY_PRIORITY; do
-  if [ ! -d "../terraform/live/$TF_ENV/$TF_STATE" ]; then
+for TF_COMPONENT in $TF_COMPONENTS_BY_PRIORITY; do
+  if [ ! -d "../terraform/live/$TF_ENV/$TF_COMPONENT" ]; then
     continue
   fi
 
-  echo "Running command in '$TF_STATE' terraform state"
-  ./terraform.sh "$TF_ENV" "$TF_STATE" "$@"
+  echo "Running command in '$TF_COMPONENT' component"
+  ./terraform.sh "$TF_ENV" "$TF_COMPONENT" "$@"
 done

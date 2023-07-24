@@ -1,10 +1,10 @@
 #!/bin/sh
 
 TF_ENV=$1;
-TF_STATE=$2;
+TF_COMPONENT=$2;
 
-if [ -z "$TF_ENV" ] || [ -z "$TF_STATE" ]; then
-  echo "Usage: $0 <environment> <state> <command>"
+if [ -z "$TF_ENV" ] || [ -z "$TF_COMPONENT" ]; then
+  echo "Usage: $0 <environment> <component> <command>"
   exit 1
 fi
 
@@ -16,16 +16,16 @@ if [ ! -d "../terraform/live/$TF_ENV" ]; then
   exit 1
 fi
 
-if [ ! -d "../terraform/live/$TF_ENV/$TF_STATE" ]; then
-  echo "State '$TF_STATE' does not exist"
+if [ ! -d "../terraform/live/$TF_ENV/$TF_COMPONENT" ]; then
+  echo "Component '$TF_COMPONENT' does not exist"
   exit 1
 fi
 
 if [ "$1" = "init" ]; then
   AWS_PROFILE=$(basename "$(git rev-parse --show-toplevel)") \
-  terraform -chdir="../terraform/live/$TF_ENV/$TF_STATE" init \
-    -backend-config="key=$TF_ENV/$TF_STATE$TF_STATE_SUFFIX.tfstate"
+  terraform -chdir="../terraform/live/$TF_ENV/$TF_COMPONENT" init \
+    -backend-config="key=$TF_ENV/$TF_COMPONENT$TF_COMPONENT_SUFFIX.tfstate"
 else
   AWS_PROFILE=$(basename "$(git rev-parse --show-toplevel)") \
-  terraform -chdir="../terraform/live/$TF_ENV/$TF_STATE" "$@"
+  terraform -chdir="../terraform/live/$TF_ENV/$TF_COMPONENT" "$@"
 fi
