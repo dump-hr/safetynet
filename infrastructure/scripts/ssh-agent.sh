@@ -12,10 +12,10 @@ cd -P -- "$(dirname -- "$0")" || exit 1
 
 case "$ACTION" in
 load)
-  sops -d "../ssh-keys/$ENV.enc" | ssh-add -
+  sops -d "../ssh-keys/$ENV.enc" | ssh-add - 2>&1 | grep -v "^Identity added"
   ;;
 unload)
-  ssh-add -d "../ssh-keys/$ENV.pub"
+  ssh-add -d "../ssh-keys/$ENV.pub" 2>&1 | grep -v "^Identity removed"
   ;;
 *)
   echo "Usage: $0 <env> <load|unload>"

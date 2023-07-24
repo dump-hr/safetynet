@@ -59,6 +59,7 @@ module "web" {
     Project     = "safetynet"
     Role        = "web"
     Environment = "preview"
+    Branch      = var.preview_name
   }
 
   providers = {

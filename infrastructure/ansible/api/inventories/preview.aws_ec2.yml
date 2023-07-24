@@ -1,0 +1,12 @@
+---
+plugin: aws_ec2
+profile: safetynet
+regions:
+  - eu-central-1
+filters:
+  tag:Project: safetynet
+  tag:Role: api
+  tag:Environment: preview
+keyed_groups:
+  - key: tags.Branch
+    prefix: preview

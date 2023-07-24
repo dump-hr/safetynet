@@ -58,5 +58,6 @@ module "api" {
     Project     = "safetynet"
     Role        = "api"
     Environment = "preview"
+    Branch      = var.preview_name
   }
 }

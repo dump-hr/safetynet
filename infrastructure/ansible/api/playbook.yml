@@ -1,0 +1,7 @@
+---
+- hosts: all
+  remote_user: admin
+
+  tasks:
+    - name: ping
+      shell: ping -c3 google.com
