@@ -1,6 +1,32 @@
-# terraform
+# infrastructure
 
-## Recipes
+## ansible
+
+### New dev machine setup
+
+Install dependencies:
+- [aws-cli](https://github.com/aws/aws-cli#installation)
+- [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pip)
+
+Add project AWS credentials to `~/.aws/credentials` file:
+```
+[safetynet]
+aws_access_key_id = AKIAXXXXXXXXXXXXXXXX
+aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+```
+
+Install ansible dependencies:
+```
+ansible-galaxy install -r requirements.yml
+```
+
+### Deploy configuration changes
+
+```
+path/to/scripts/ansible-playbook.sh [dev|staging|production] [api|worker]
+```
+
+## terraform
 
 ### New dev machine setup
 
@@ -18,7 +44,8 @@ aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 ### Apply changes to infrastructure
 
 ```
-./run [dev|staging|production] [network|compute|data] [terraform-command]
+path/to/scripts/terraform.sh [dev|staging|production] [network|compute|data] init
+path/to/scripts/terraform.sh [dev|staging|production] [network|compute|data] apply
 ```
 
 ### Create terraform state backend
@@ -38,7 +65,9 @@ location or backed up. To cleanup terraform state from AWS account, manually
 delete tfstate S3 bucket and tfstate lock DynamoDB table from AWS console.
 Names can be found in `shared/tfstate/main.tf`. 
 
+
 ## Learning resources
 
 - [DevOps with Terraform](https://cloudcasts.io/course/terraform) `course` `3h 43m`
 - [Terraform: Up & Running](https://www.terraformupandrunning.com/) `book` `457 pages`
+- [Ansible for DevOps](https://www.ansiblefordevops.com/) `book` `468 pages`

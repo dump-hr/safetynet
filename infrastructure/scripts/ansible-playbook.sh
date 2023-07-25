@@ -11,20 +11,19 @@ fi
 shift 2
 cd -P -- "$(dirname -- "$0")" || exit 1
 
-if [ ! -d "../ansible/$ANSIBLE_COMPONENT" ]; then
-  echo "Component '$ANSIBLE_COMPONENT' does not exist"
+if [ ! -f "../ansible/inventories/$ANSIBLE_ENV.aws_ec2.yml" ]; then
+  echo "Environment '$ANSIBLE_ENV' does not exist"
   exit 1
 fi
 
-if [ ! -f "../ansible/$ANSIBLE_COMPONENT/inventories/$ANSIBLE_ENV.aws_ec2.yml" ]; then
-  echo "Environment '$ANSIBLE_ENV' does not exist"
+if [ ! -d "../ansible/playbooks/$ANSIBLE_COMPONENT" ]; then
+  echo "Component '$ANSIBLE_COMPONENT' does not exist"
   exit 1
 fi
 
 ./ssh-agent.sh "$ANSIBLE_ENV" load
 
-ansible-playbook "../ansible/$ANSIBLE_COMPONENT/playbook.yml" \
-  -i "../ansible/$ANSIBLE_COMPONENT/inventories/$ANSIBLE_ENV.aws_ec2.yml" \
-  "$@"
+ansible-playbook "../ansible/playbooks/$ANSIBLE_COMPONENT/playbook.yml" \
+  -i "../ansible/inventories/$ANSIBLE_ENV.aws_ec2.yml" "$@"
 
 ./ssh-agent.sh "$ANSIBLE_ENV" unload

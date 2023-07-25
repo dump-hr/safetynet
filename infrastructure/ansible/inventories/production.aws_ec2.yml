@@ -1,12 +1,17 @@
 ---
 plugin: aws_ec2
 profile: safetynet
+
 regions:
   - eu-central-1
+
+hostnames:
+  - ip-address
+
 filters:
   tag:Project: safetynet
-  tag:Role: api
-  tag:Environment: preview
+  tag:Environment: production
+
 keyed_groups:
-  - key: tags.Branch
-    prefix: preview
+  - key: tags.Role
+leading_separator: false
