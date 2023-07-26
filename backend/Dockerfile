@@ -14,6 +14,6 @@ RUN yarn install --immutable && yarn cache clean
 
 COPY . .
 
-RUN yarn prebuild && yarn build
+RUN yarn build
 
 CMD [ "yarn", "start:prod" ]
