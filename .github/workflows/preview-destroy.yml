@@ -1,0 +1,47 @@
+name: Destroy preview
+
+on:
+  delete:
+    branches:
+      - "*"
+      - "!main"
+
+  workflow_dispatch:
+
+jobs:
+  terraform_destroy:
+    name: Destroy preview infrastructure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Setup sops
+        uses: mdgreenwald/mozilla-sops-action@v1.4.1
+
+      - name: Login to AWS
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} --profile safetynet
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile safetynet
+
+      - name: Terraform init
+        run: |
+          ./infrastructure/scripts/terraform.sh preview data init
+          ./infrastructure/scripts/terraform.sh preview compute init
+        env:
+          TF_STATE_SUFFIX: -${{ env.GITHUB_REF_NAME_SLUG }}
+          TF_VAR_preview_name: ${{ env.GITHUB_REF_NAME_SLUG }}
+
+      - name: Terraform destroy
+        run: |
+          ./infrastructure/scripts/terraform.sh preview data destroy -auto-approve
+          ./infrastructure/scripts/terraform.sh preview compute destroy -auto-approve
+        env:
+          TF_VAR_preview_name: ${{ env.GITHUB_REF_NAME_SLUG }}
