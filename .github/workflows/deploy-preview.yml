@@ -1,13 +1,53 @@
-name: Deploy
+name: Deploy preview
 
 on:
   push:
     branches:
-      - main
+      - "*"
+      - "!main"
 
   workflow_dispatch:
 
 jobs:
+  terraform_provision:
+    name: Provision preview infrastructure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+
+      - name: Setup sops
+        uses: mdgreenwald/mozilla-sops-action@v1.4.1
+
+      - name: Login to AWS
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Terraform init
+        run: |
+          ./infrastructure/scripts/terraform.sh preview data init
+          ./infrastructure/scripts/terraform.sh preview compute init
+        env:
+          TF_STATE_SUFFIX: -${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+          TF_VAR_preview_name: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+
+      - name: Terraform apply
+        run: |
+          ./infrastructure/scripts/terraform.sh preview data apply -auto-approve
+          ./infrastructure/scripts/terraform.sh preview compute apply -auto-approve
+        env:
+          TF_VAR_preview_name: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+
   docker_image_build:
     name: Build Docker image
     runs-on: ubuntu-latest
@@ -36,7 +76,7 @@ jobs:
           context: ./backend
           push: true
           tags: ghcr.io/${{ github.repository }}-api:latest,
-            ghcr.io/${{ github.repository }}-api:${{ github.ref_name }},
+            ghcr.io/${{ github.repository }}-api:${{ env.GITHUB_HEAD_REF_SLUG_URL }},
             ghcr.io/${{ github.repository }}-api:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -46,11 +86,15 @@ jobs:
     runs-on: ubuntu-latest
 
     needs:
+      - terraform_provision
       - docker_image_build
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v4
 
       - name: Setup Python
         uses: actions/setup-python@v4
@@ -80,15 +124,25 @@ jobs:
 
       - name: Run Ansible playbook
         run: |
-          ./infrastructure/scripts/ansible-playbook.sh production api
+          ./infrastructure/scripts/ansible-playbook.sh preview api \
+            -e docker_tag=$PREVIEW_NAME \
+            -e api_domain=safetynet-api-preview-$PREVIEW_NAME.dump.hr
+        env:
+          PREVIEW_NAME: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
 
   vite_static_build:
     name: Vite static build and deploy
     runs-on: ubuntu-latest
 
+    needs:
+      - terraform_provision
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v4
 
       - name: Setup Node
         uses: actions/setup-node@v2
@@ -98,10 +152,13 @@ jobs:
 
       - name: Set API URL in .env file
         run: |
-          echo "VITE_API_URL=https://safetynet-api-production.dump.hr" >> frontend/.env
+          echo "VITE_API_URL=https://safetynet-api-preview-$PREVIEW_NAME.dump.hr" >> frontend/.env
+        env:
+          PREVIEW_NAME: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
 
       - name: Run build and deploy script
         run: |
-          ./infrastructure/scripts/vite-build-deploy.sh ./frontend safetynet-frontend-production
+          ./infrastructure/scripts/vite-build-deploy.sh ./frontend safetynet-frontend-preview-$PREVIEW_NAME
         env:
+          PREVIEW_NAME: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
           AWS_PROFILE: safetynet
