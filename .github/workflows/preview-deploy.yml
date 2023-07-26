@@ -150,6 +150,11 @@ jobs:
           cache: "yarn"
           cache-dependency-path: ./frontend/yarn.lock
 
+      - name: Login to AWS
+        run: |
+          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} --profile safetynet
+          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile safetynet
+
       - name: Set API URL in .env file
         run: |
           echo "VITE_API_URL=https://safetynet-api-preview-$PREVIEW_NAME.dump.hr" >> frontend/.env
