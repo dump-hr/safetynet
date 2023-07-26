@@ -162,7 +162,7 @@ jobs:
 
       - name: Run build and deploy script
         run: |
-          ./infrastructure/scripts/static-build-deploy.sh ./frontend safetynet-frontend-preview-$PREVIEW_NAME
+          ./infrastructure/scripts/static-build-deploy.sh ./frontend safetynet-web-preview-$PREVIEW_NAME
         env:
           PREVIEW_NAME: ${{ env.GITHUB_REF_NAME_SLUG }}
           AWS_PROFILE: safetynet
