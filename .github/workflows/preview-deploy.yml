@@ -2,9 +2,8 @@ name: Deploy preview
 
 on:
   push:
-    branches:
-      - "*"
-      - "!main"
+    branches-ignore:
+      - main
 
   workflow_dispatch:
 
