@@ -166,3 +166,4 @@ jobs:
         env:
           PREVIEW_NAME: ${{ env.GITHUB_REF_NAME_SLUG }}
           AWS_PROFILE: safetynet
+          AWS_REGION: us-east-1

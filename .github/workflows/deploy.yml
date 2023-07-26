@@ -108,3 +108,4 @@ jobs:
           ./infrastructure/scripts/static-build-deploy.sh ./frontend safetynet-frontend-production
         env:
           AWS_PROFILE: safetynet
+          AWS_REGION: us-east-1
