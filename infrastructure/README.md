@@ -1,12 +1,12 @@
 # infrastructure
 
-## ansible
-
 ### New dev machine setup
 
 Install dependencies:
 - [aws-cli](https://github.com/aws/aws-cli#installation)
+- [tfenv](https://github.com/tfutils/tfenv)
 - [ansible](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-and-upgrading-ansible-with-pip)
+- [sops](https://github.com/mozilla/sops/releases/latest)
 
 Add project AWS credentials to `~/.aws/credentials` file:
 ```
@@ -17,8 +17,11 @@ aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 
 Install ansible dependencies:
 ```
+cd ansible
 ansible-galaxy install -r requirements.yml
 ```
+
+## ansible
 
 ### Deploy configuration changes
 
@@ -27,19 +30,6 @@ path/to/scripts/ansible-playbook.sh [dev|staging|production] [api|worker]
 ```
 
 ## terraform
-
-### New dev machine setup
-
-Install dependencies:
-- [aws-cli](https://github.com/aws/aws-cli#installation)
-- [tfenv](https://github.com/tfutils/tfenv)
-
-Add project AWS credentials to `~/.aws/credentials` file:
-```
-[safetynet]
-aws_access_key_id = AKIAXXXXXXXXXXXXXXXX
-aws_secret_access_key = XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-```
 
 ### Apply changes to infrastructure
 

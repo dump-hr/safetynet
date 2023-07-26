@@ -3,42 +3,52 @@
   set_fact:
     container_name: "api-{{ lookup('community.general.random_string', length=8, special=false, upper=false) }}"
 
+- name: Copy .env file
+  copy:
+    content: "{{ lookup('community.sops.sops', role_path + '/files/' + env_file + '.enc.env') }}"
+    dest: "/home/{{ ansible_user }}/{{ env_file }}.env"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: 0600
+
 - name: Create new api docker container
   docker_container:
     name: "{{ container_name }}"
-    image: "{{ docker_image }}"
+    image: "ghcr.io/dump-hr/safetynet-api:{{ docker_tag }}"
     restart_policy: unless-stopped
+    env_file: "/home/{{ ansible_user }}/{{ env_file }}.env"
     networks:
       - name: traefiknet
     labels:
       traefik.enable: "true"
-      traefik.http.routers.api.rule: "Host(`safetynet-api-production.dump.hr`)"
+      traefik.http.routers.api.rule: "Host(`{{ api_domain }}`)"
       traefik.http.middlewares.api-retry.retry.attempts: "5"
       traefik.http.middlewares.api-retry.retry.initialinterval: "100ms"
       traefik.http.routers.api.middlewares: api-retry@docker
       # Setting a service property ensures that the generated service name will be consistent between versions
       traefik.http.services.api.loadbalancer.server.scheme: "http"
 
-- name: Check if api docker container is healthy
-  docker_container_info:
-    name: "{{ container_name }}"
-  register: api
-  until: api.exists and api.container.State.Health.Status != 'starting'
-  retries: 20
-  delay: 5
+- name: Swap docker containers if new one is healthy
+  block:
+    - name: Check if api docker container is healthy
+      docker_container_info:
+        name: "{{ container_name }}"
+      register: api
+      until: api.exists and api.container.State.Health.Status != 'starting'
+      failed_when: api.container.State.Health.Status != 'healthy'
+      retries: 20
+      delay: 5
 
-- name: Remove new unhealthy api docker container
-  docker_container:
-    name: "{{ container_name }}"
-    state: absent
-  when: api.container.State.Health.Status != 'healthy'
+    - name: Remove old api docker container
+      docker_container:
+        name: api
+        state: absent
 
-- name: Remove old api docker container
-  docker_container:
-    name: api
-    state: absent
-  when: api.container.State.Health.Status == 'healthy'
+    - name: Rename new api docker container
+      shell: docker rename "{{ container_name }}" api
 
-- name: Rename new api docker container
-  shell: docker rename "{{ container_name }}" api
-  when: api.container.State.Health.Status == 'healthy'
+  rescue:
+    - name: Remove new unhealthy api docker container
+      docker_container:
+        name: "{{ container_name }}"
+        state: absent
