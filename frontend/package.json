@@ -14,6 +14,7 @@
     "@capacitor/core": "^5.0.5",
     "@capacitor/ios": "^5.0.5",
     "@capacitor/splash-screen": "^5.0.4",
+    "@tanstack/react-query": "^4.29.14",
     "ansi-regex": "^6.0.1",
     "clsx": "^1.2.1",
     "react": "^18.2.0",

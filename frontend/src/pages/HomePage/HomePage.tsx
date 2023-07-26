@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Page, routes } from '@/App';
 
 const HomePage = () => {
-  const [hasSplashAnimationEnded, setHasSplashAnimationEnded] = useState(false);
+  const [hasSplashAnimationEnded, setHasSplashAnimationEnded] = useState(true);
 
   useTimeout(() => {
     setHasSplashAnimationEnded(true);
