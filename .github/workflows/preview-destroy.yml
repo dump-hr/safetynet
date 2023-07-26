@@ -38,12 +38,12 @@ jobs:
           ./infrastructure/scripts/terraform.sh preview data init
           ./infrastructure/scripts/terraform.sh preview compute init
         env:
-          TF_STATE_SUFFIX: -${{ env.GITHUB_HEAD_REF_SLUG_URL }}
-          TF_VAR_preview_name: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+          TF_STATE_SUFFIX: -${{ env.GITHUB_REF_NAME_SLUG }}
+          TF_VAR_preview_name: ${{ env.GITHUB_REF_NAME_SLUG }}
 
       - name: Terraform destroy
         run: |
           ./infrastructure/scripts/terraform.sh preview data destroy -auto-approve
           ./infrastructure/scripts/terraform.sh preview compute destroy -auto-approve
         env:
-          TF_VAR_preview_name: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+          TF_VAR_preview_name: ${{ env.GITHUB_REF_NAME_SLUG }}

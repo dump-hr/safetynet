@@ -38,15 +38,15 @@ jobs:
           ./infrastructure/scripts/terraform.sh preview data init
           ./infrastructure/scripts/terraform.sh preview compute init
         env:
-          TF_STATE_SUFFIX: -${{ env.GITHUB_HEAD_REF_SLUG_URL }}
-          TF_VAR_preview_name: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+          TF_STATE_SUFFIX: -${{ env.GITHUB_REF_NAME_SLUG }}
+          TF_VAR_preview_name: ${{ env.GITHUB_REF_NAME_SLUG }}
 
       - name: Terraform apply
         run: |
           ./infrastructure/scripts/terraform.sh preview data apply -auto-approve
           ./infrastructure/scripts/terraform.sh preview compute apply -auto-approve
         env:
-          TF_VAR_preview_name: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+          TF_VAR_preview_name: ${{ env.GITHUB_REF_NAME_SLUG }}
 
   docker_image_build:
     name: Build Docker image
@@ -79,7 +79,7 @@ jobs:
           context: ./backend
           push: true
           tags: ghcr.io/${{ github.repository }}-api:latest,
-            ghcr.io/${{ github.repository }}-api:${{ env.GITHUB_HEAD_REF_SLUG_URL }},
+            ghcr.io/${{ github.repository }}-api:${{ env.GITHUB_REF_NAME_SLUG }},
             ghcr.io/${{ github.repository }}-api:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -131,7 +131,7 @@ jobs:
             -e docker_tag=$PREVIEW_NAME \
             -e api_domain=safetynet-api-preview-$PREVIEW_NAME.dump.hr
         env:
-          PREVIEW_NAME: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+          PREVIEW_NAME: ${{ env.GITHUB_REF_NAME_SLUG }}
 
   vite_static_build:
     name: Vite static build and deploy
@@ -157,11 +157,11 @@ jobs:
         run: |
           echo "VITE_API_URL=https://safetynet-api-preview-$PREVIEW_NAME.dump.hr" >> frontend/.env
         env:
-          PREVIEW_NAME: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+          PREVIEW_NAME: ${{ env.GITHUB_REF_NAME_SLUG }}
 
       - name: Run build and deploy script
         run: |
           ./infrastructure/scripts/vite-build-deploy.sh ./frontend safetynet-frontend-preview-$PREVIEW_NAME
         env:
-          PREVIEW_NAME: ${{ env.GITHUB_HEAD_REF_SLUG_URL }}
+          PREVIEW_NAME: ${{ env.GITHUB_REF_NAME_SLUG }}
           AWS_PROFILE: safetynet
