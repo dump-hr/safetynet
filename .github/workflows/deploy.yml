@@ -99,9 +99,9 @@ jobs:
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }} --profile safetynet
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }} --profile safetynet
 
-      - name: Set API URL in .env file
+      - name: Set API endpoint in .env file
         run: |
-          echo "VITE_API_URL=https://safetynet-api-production.dump.hr" >> frontend/.env
+          echo "VITE_APP_API_ENDPOINT=https://safetynet-api-production.dump.hr" >> frontend/.env
 
       - name: Run build and deploy script
         run: |
