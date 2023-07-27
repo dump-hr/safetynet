@@ -29,8 +29,6 @@ ansible-playbook "playbooks/$ANSIBLE_COMPONENT/playbook.yml" \
   -i "inventories/$ANSIBLE_ENV.aws_ec2.yml" "$@"
 status=$?
 
-echo status: $status
-
 cd - >/dev/null || exit 1
 
 ./ssh-agent.sh "$ANSIBLE_ENV" unload
