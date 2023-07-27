@@ -121,7 +121,7 @@ jobs:
 
       - name: Run Ansible playbook
         run: |
-          ssh-agent
+          eval $(ssh-agent)
           ./infrastructure/scripts/ansible-playbook.sh preview api \
             --limit "preview_$(echo $GITHUB_REF_NAME_SLUG | sed 's/-/_/g')" \
             -e docker_tag=$PREVIEW_NAME \
