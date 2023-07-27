@@ -79,6 +79,7 @@ jobs:
 
       - name: Run Ansible playbook
         run: |
+          ssh-agent
           ./infrastructure/scripts/ansible-playbook.sh production api
 
   vite_static_build:
