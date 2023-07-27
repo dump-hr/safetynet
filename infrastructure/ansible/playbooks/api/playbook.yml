@@ -1,9 +1,9 @@
-# ---
-# - hosts: localhost
-#   tasks:
-#     - fail:
-#         msg: "[ERROR] Empty inventory. No host available."
-#       when: groups.all|length == 0
+---
+- hosts: localhost
+  tasks:
+    - fail:
+        msg: "[ERROR] Empty inventory. No host available."
+      when: groups.all|length == 0
 
 - hosts: api
   remote_user: admin
