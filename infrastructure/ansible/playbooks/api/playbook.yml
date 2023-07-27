@@ -1,7 +1,8 @@
 ---
 - hosts: localhost
   tasks:
-    - fail:
+    - name: Check if inventory is empty.
+      fail:
         msg: "[ERROR] Empty inventory. No host available."
       when: groups.all|length == 0
 
