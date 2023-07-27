@@ -2,9 +2,8 @@ name: Destroy preview
 
 on:
   delete:
-    branches:
-      - "*"
-      - "!main"
+    branches-ignore:
+      - main
 
   workflow_dispatch:
 
