@@ -23,7 +23,7 @@ fi
 
 if [ "$1" = "init" ]; then
   AWS_PROFILE=$(basename "$(git rev-parse --show-toplevel)") \
-  terraform -chdir="../terraform/live/$TF_ENV/$TF_COMPONENT" init \
+  terraform -chdir="../terraform/live/$TF_ENV/$TF_COMPONENT" init -reconfigure \
     -backend-config="key=$TF_ENV/$TF_COMPONENT$TF_STATE_SUFFIX.tfstate"
 else
   AWS_PROFILE=$(basename "$(git rev-parse --show-toplevel)") \
