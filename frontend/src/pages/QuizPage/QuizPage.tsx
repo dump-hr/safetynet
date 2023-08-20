@@ -10,9 +10,12 @@ import { Page, routes } from '@/App';
 import Tutorial from './Tutorial/Tutorial';
 
 const QuizPage = () => {
-  const [difficulty, setDifficulty] = useState<Difficulty>(null);
-  const [showTutorial, setShowTutorial] = useState(true);
+  const [showTutorial, setShowTutorial] = useState(
+    localStorage.getItem('showTutorial') !== 'false'
+  );
   const [gameEnded, setGameEnded] = useState(false);
+
+  const [difficulty, setDifficulty] = useState<Difficulty>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [multiplier, setMultiplier] = useState(1);
@@ -23,8 +26,13 @@ const QuizPage = () => {
     return <ChooseDifficulty setDifficulty={setDifficulty} />;
   }
 
+  const handleHideTutorial = () => {
+    setShowTutorial(false);
+    localStorage.setItem('showTutorial', 'false');
+  };
+
   if (showTutorial) {
-    return <Tutorial hideTutorial={() => setShowTutorial(false)} />;
+    return <Tutorial hideTutorial={handleHideTutorial} />;
   }
 
   if (gameEnded) {
