@@ -10,7 +10,9 @@ const ParentsPage = () => {
   const imagesStorageUrl = `${storageBaseUrl}Images/ParentsSection/`;
 
   const imageUrl = (filename: string) =>
-    !!filename ? `${imagesStorageUrl}${filename}` : 'study-material.jpg';
+    !!filename
+      ? `${imagesStorageUrl}${filename}`
+      : '/images/study-material.jpg';
 
   const [materials, setMaterials] = useState([
     {
