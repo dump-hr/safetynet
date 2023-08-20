@@ -13,6 +13,8 @@ const QuizPage = () => {
   const [showTutorial, setShowTutorial] = useState(false);
   const [gameEnded, setGameEnded] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [multiplier, setMultiplier] = useState(1);
 
   const { data: questions, isError, isLoading } = useGetQuestions(difficulty);
 
@@ -54,16 +56,29 @@ const QuizPage = () => {
     );
   }
 
+  const handleNextQuestion = (points: number) => {
+    if (points > 0) {
+      setScore((prev) => prev + points);
+      setMultiplier((prev) => prev + 1);
+    } else {
+      setMultiplier(1);
+    }
+
+    if (questionIndex + 1 < questions.length) {
+      setQuestionIndex((prev) => prev + 1);
+    } else {
+      setGameEnded(true);
+    }
+  };
+
   return (
     <Game
       question={questions[questionIndex]}
       questionNumber={questionIndex + 1}
       questionCount={questions.length}
-      next={() =>
-        questionIndex + 1 < questions.length
-          ? setQuestionIndex((prev) => prev + 1)
-          : setGameEnded(true)
-      }
+      score={score}
+      multiplier={multiplier}
+      next={handleNextQuestion}
     />
   );
 };
