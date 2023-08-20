@@ -46,9 +46,14 @@ const Game: React.FC<Props> = ({
   );
 
   const handleAnswerClick = (answerId: number) => {
-    if (questionDelay.count > 0 || selectedAnswerId !== null) {
+    if (
+      questionDelay.count > 0 ||
+      answerDelay.count === 0 ||
+      selectedAnswerId !== null
+    ) {
       return;
     }
+
     setSelectedAnswerId(answerId);
     fetchCorrectAnswer();
   };
@@ -58,23 +63,47 @@ const Game: React.FC<Props> = ({
       return;
     }
     setTimeout(() => {
-      next(selectedAnswerId === correctAnswer.id ? points * multiplier : 0);
+      next(
+        selectedAnswerId === correctAnswer.id && answerDelay.count > 0
+          ? points * multiplier
+          : 0
+      );
+
       questionDelay.reset();
       answerDelay.reset();
       setSelectedAnswerId(null);
-    }, 2000);
+    }, 2500);
   }, [correctAnswer]);
+
+  useEffect(() => {
+    if (answerDelay.count > 0 || isCorrectAnswerFetched) return;
+
+    fetchCorrectAnswer();
+  }, [answerDelay.count === 0]);
 
   return (
     <>
+      {answerDelay.countPercentage < 30 && answerDelay.countPercentage > 1 && (
+        <div className={styles.timerEndingAnimation}></div>
+      )}
+
+      <div
+        className={clsx(
+          styles.position__timer,
+          styles['out-of-time'],
+          styles['points--slide'],
+          { [styles.animate__timer]: answerDelay.count === 0 }
+        )}
+      >
+        <span>Isteklo je vrijeme</span>
+      </div>
+
       <div
         className={clsx(
           styles.position__timer,
           styles['points--message'],
           styles['points--slide'],
-          {
-            [styles.animate__timer]: questionDelay.count > 0,
-          }
+          { [styles.animate__timer]: questionDelay.count > 0 }
         )}
         style={{ animationDuration: `${questionDelaySeconds + 1}s` }}
       >
