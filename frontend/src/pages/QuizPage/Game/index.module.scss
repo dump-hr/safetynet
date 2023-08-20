@@ -390,3 +390,30 @@
     box-shadow: inset 0 0 700px rgba(255, 0, 0, 0.7);
   }
 }
+
+.leave-game {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  height: 35px;
+  text-decoration: none;
+  font-size: 22px;
+  color: hsla(0, 0%, 100%, 0.7);
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+  transition: all 0.1s ease-in-out;
+}
+.leave-game i {
+  display: flex;
+  align-items: center;
+}
+.leave-game:hover {
+  color: #fff;
+}
+.leave-game__inner {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  margin-left: 10px;
+}

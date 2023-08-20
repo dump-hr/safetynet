@@ -4,6 +4,8 @@ import clsx from 'clsx';
 import useCountdown from '@/hooks/useCountdown';
 import { useEffect, useState } from 'react';
 import { useGetCorrectAnswer } from '@/api';
+import { Link } from 'react-router-dom';
+import { Page, routes } from '@/App';
 
 type Props = {
   question: QuestionWithAnswer;
@@ -86,6 +88,10 @@ const Game: React.FC<Props> = ({
       {answerDelay.countPercentage < 30 && answerDelay.countPercentage > 1 && (
         <div className={styles.timerEndingAnimation}></div>
       )}
+
+      <Link to={routes[Page.Home]} className={styles['leave-game']}>
+        <div className={styles['leave-game__inner']}>&larr; Izađi iz igre</div>
+      </Link>
 
       <div
         className={clsx(

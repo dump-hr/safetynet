@@ -27,9 +27,7 @@ const ChooseDifficulty: React.FC<Props> = ({ setDifficulty }) => {
               Napredna
             </div>
             <Link to={routes[Page.Home]}>
-              <div ui-sref="home" className={styles.menu__item}>
-                &larr; Nazad
-              </div>
+              <div className={styles.menu__item}>&larr; Nazad</div>
             </Link>
           </div>
         </div>
