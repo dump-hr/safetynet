@@ -7,10 +7,11 @@ import Loading from '@/components/Loading';
 import styles from './index.module.scss';
 import { Link } from 'react-router-dom';
 import { Page, routes } from '@/App';
+import Tutorial from './Tutorial/Tutorial';
 
 const QuizPage = () => {
   const [difficulty, setDifficulty] = useState<Difficulty>(null);
-  const [showTutorial, setShowTutorial] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(true);
   const [gameEnded, setGameEnded] = useState(false);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
@@ -23,7 +24,7 @@ const QuizPage = () => {
   }
 
   if (showTutorial) {
-    return <div>tutorial</div>;
+    return <Tutorial hideTutorial={() => setShowTutorial(false)} />;
   }
 
   if (gameEnded) {
