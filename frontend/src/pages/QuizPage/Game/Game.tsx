@@ -4,26 +4,30 @@ import clsx from 'clsx';
 import useCountdown from '@/hooks/useCountdown';
 import { useEffect, useState } from 'react';
 import { useGetCorrectAnswer } from '@/api';
+import { Link } from 'react-router-dom';
+import { Page, routes } from '@/App';
 
 type Props = {
   question: QuestionWithAnswer;
   questionNumber: number;
   questionCount: number;
-  next: () => void;
+  score: number;
+  multiplier: number;
+  next: (points: number) => void;
 };
 
 const letters = 'ABCD';
-const delaySeconds = 3;
+const questionDelaySeconds = 3;
+const answerDelaySeconds = 15;
 
 const Game: React.FC<Props> = ({
   question,
   questionNumber,
   questionCount,
+  score,
+  multiplier,
   next,
 }) => {
-  const { count: delaySecondsLeft, reset: resetDelayCountdown } =
-    useCountdown(delaySeconds);
-
   const {
     data: correctAnswer,
     refetch: fetchCorrectAnswer,
@@ -32,10 +36,26 @@ const Game: React.FC<Props> = ({
 
   const [selectedAnswerId, setSelectedAnswerId] = useState<number | null>(null);
 
+  const questionDelay = useCountdown(questionDelaySeconds);
+  const answerDelay = useCountdown(
+    answerDelaySeconds,
+    10,
+    questionDelay.count > 0 || selectedAnswerId !== null
+  );
+
+  const points = Math.round(
+    question.points * (answerDelay.countPercentage / 100)
+  );
+
   const handleAnswerClick = (answerId: number) => {
-    if (delaySecondsLeft > 0 || selectedAnswerId !== null) {
+    if (
+      questionDelay.count > 0 ||
+      answerDelay.count === 0 ||
+      selectedAnswerId !== null
+    ) {
       return;
     }
+
     setSelectedAnswerId(answerId);
     fetchCorrectAnswer();
   };
@@ -45,26 +65,55 @@ const Game: React.FC<Props> = ({
       return;
     }
     setTimeout(() => {
-      next();
-      resetDelayCountdown();
+      next(
+        selectedAnswerId === correctAnswer.id && answerDelay.count > 0
+          ? points * multiplier
+          : 0
+      );
+
+      questionDelay.reset();
+      answerDelay.reset();
       setSelectedAnswerId(null);
-    }, 1000);
+    }, 2500);
   }, [correctAnswer]);
+
+  useEffect(() => {
+    if (answerDelay.count > 0 || isCorrectAnswerFetched) return;
+
+    fetchCorrectAnswer();
+  }, [answerDelay.count === 0]);
 
   return (
     <>
+      {answerDelay.countPercentage < 30 && answerDelay.countPercentage > 1 && (
+        <div className={styles.timerEndingAnimation}></div>
+      )}
+
+      <Link to={routes[Page.Home]} className={styles['leave-game']}>
+        <div className={styles['leave-game__inner']}>&larr; Izađi iz igre</div>
+      </Link>
+
+      <div
+        className={clsx(
+          styles.position__timer,
+          styles['out-of-time'],
+          styles['points--slide'],
+          { [styles.animate__timer]: answerDelay.count === 0 }
+        )}
+      >
+        <span>Isteklo je vrijeme</span>
+      </div>
+
       <div
         className={clsx(
           styles.position__timer,
           styles['points--message'],
           styles['points--slide'],
-          {
-            [styles.animate__timer]: delaySecondsLeft > 0,
-          }
+          { [styles.animate__timer]: questionDelay.count > 0 }
         )}
-        style={{ animationDuration: `${delaySeconds + 1}s` }}
+        style={{ animationDuration: `${questionDelaySeconds + 1}s` }}
       >
-        <span>{delaySecondsLeft}</span>
+        <span>{questionDelay.countSeconds}</span>
       </div>
 
       <div className={styles.game}>
@@ -85,7 +134,7 @@ const Game: React.FC<Props> = ({
                     styles['game-list__inner'],
                     styles['game-list__inner--active'],
                     {
-                      [styles.answer__disabled]: delaySecondsLeft > 0,
+                      [styles.answer__disabled]: questionDelay.count > 0,
                       [styles.answer__correct]:
                         isCorrectAnswerFetched &&
                         answer.id === correctAnswer.id,
@@ -103,6 +152,57 @@ const Game: React.FC<Props> = ({
             ))}
           </div>
         </div>
+      </div>
+
+      <div className={styles.ui} ng-show="isActive">
+        <div className={styles.ui__bar}>
+          <div className={styles['ui__bar--progress-container']}>
+            <div
+              className={clsx(styles['ui__bar--progress'], {
+                [styles.progress__moderate]:
+                  answerDelay.countPercentage < 50 &&
+                  answerDelay.countPercentage > 30,
+                [styles.progress__critical]: answerDelay.countPercentage < 30,
+              })}
+              style={{
+                width: `${answerDelay.countPercentage}%`,
+              }}
+            ></div>
+          </div>
+        </div>
+        <div className={styles.ui__multiplayer}>
+          <div className={styles['ui-multiplayer__content']}>x{multiplier}</div>
+        </div>
+        <div
+          className={clsx(
+            styles.ui__hexagon,
+            styles['ui__hexagon--bar-points']
+          )}
+        >
+          <div
+            className={clsx(
+              styles['ui-hexagon__content'],
+              styles['ui-hexagon__content--bar-points']
+            )}
+          >
+            {points}
+          </div>
+        </div>
+        <div className={styles.ui__hexagon}>
+          <div
+            className={clsx(
+              styles['ui-hexagon__content'],
+              styles['ui-hexagon__content--points']
+            )}
+          >
+            {score}
+          </div>
+        </div>
+        {isCorrectAnswerFetched && selectedAnswerId === correctAnswer.id && (
+          <div className={styles['ui__points-new']}>
+            <span>+{points * multiplier}</span>
+          </div>
+        )}
       </div>
     </>
   );

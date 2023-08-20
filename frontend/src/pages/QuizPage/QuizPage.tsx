@@ -7,12 +7,18 @@ import Loading from '@/components/Loading';
 import styles from './index.module.scss';
 import { Link } from 'react-router-dom';
 import { Page, routes } from '@/App';
+import Tutorial from './Tutorial/Tutorial';
 
 const QuizPage = () => {
-  const [difficulty, setDifficulty] = useState<Difficulty>(null);
-  const [showTutorial, setShowTutorial] = useState(false);
+  const [showTutorial, setShowTutorial] = useState(
+    localStorage.getItem('showTutorial') !== 'false'
+  );
   const [gameEnded, setGameEnded] = useState(false);
+
+  const [difficulty, setDifficulty] = useState<Difficulty>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [multiplier, setMultiplier] = useState(1);
 
   const { data: questions, isError, isLoading } = useGetQuestions(difficulty);
 
@@ -20,8 +26,13 @@ const QuizPage = () => {
     return <ChooseDifficulty setDifficulty={setDifficulty} />;
   }
 
+  const handleHideTutorial = () => {
+    setShowTutorial(false);
+    localStorage.setItem('showTutorial', 'false');
+  };
+
   if (showTutorial) {
-    return <div>tutorial</div>;
+    return <Tutorial hideTutorial={handleHideTutorial} />;
   }
 
   if (gameEnded) {
@@ -54,16 +65,29 @@ const QuizPage = () => {
     );
   }
 
+  const handleNextQuestion = (points: number) => {
+    if (points > 0) {
+      setScore((prev) => prev + points);
+      setMultiplier((prev) => prev + 1);
+    } else {
+      setMultiplier(1);
+    }
+
+    if (questionIndex + 1 < questions.length) {
+      setQuestionIndex((prev) => prev + 1);
+    } else {
+      setGameEnded(true);
+    }
+  };
+
   return (
     <Game
       question={questions[questionIndex]}
       questionNumber={questionIndex + 1}
       questionCount={questions.length}
-      next={() =>
-        questionIndex + 1 < questions.length
-          ? setQuestionIndex((prev) => prev + 1)
-          : setGameEnded(true)
-      }
+      score={score}
+      multiplier={multiplier}
+      next={handleNextQuestion}
     />
   );
 };
