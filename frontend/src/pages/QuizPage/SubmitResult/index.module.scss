@@ -85,6 +85,20 @@
 .options__container {
   gap: 15px;
 }
+@media (max-width: 480px) {
+  .options__container {
+    flex-wrap: wrap;
+  }
+  .options__container > * {
+    width: 40%;
+  }
+  .options__container > *:last-child {
+    width: calc(2 * 40% + 15px);
+  }
+  .ending__content {
+    height: 110px;
+  }
+}
 .ending__option:hover {
   background-color: #134262;
   border-color: #2c6e87;
@@ -97,11 +111,6 @@
 .play__option:hover {
   background-color: #226491;
   border-color: #3eaad5;
-}
-.captcha {
-  position: absolute;
-  top: 80px;
-  left: 235px;
 }
 @media (max-width: 480px) {
   .ending__container {
@@ -116,14 +125,136 @@
     font-size: 75px;
     margin-top: -150px;
   }
-  .captcha {
-    left: 18px;
-  }
   .ending__option {
     font-size: 19px;
-    width: 95px;
   }
   .play__option {
     height: 40px;
   }
+}
+
+.login-section__container {
+  height: 125%;
+  padding-top: 50px;
+}
+.login-section__container,
+.login__inputs {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+@media (max-width: 480px) {
+  .login-section__container {
+    height: 150%;
+  }
+}
+.login__inputs {
+  margin: 0 auto;
+  padding: 24px;
+  border: 2px solid #14748f;
+  background-color: rgba(4, 48, 83, 0.7);
+  box-shadow: 0 0 90px 10px rgba(20, 116, 143, 0.5);
+  width: 400px;
+}
+.login-input__container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.login-birthdate-container {
+  width: 216px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+.login-birthdate__select,
+.login-birthmonth__select,
+.login-birthyear__select {
+  width: 25%;
+  color: #05e6ff;
+  background-color: #05567c;
+  border: 2px solid #1593b7;
+  text-align: center;
+  font-weight: 500;
+  transition-duration: 0.15s;
+  height: 40px;
+  font-size: 18px;
+}
+.login-birthyear__select {
+  width: 35%;
+}
+.login-input__input {
+  width: 200px;
+  height: 30px;
+  cursor: text;
+}
+.login__buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.login__button {
+  cursor: pointer;
+}
+.return__button {
+  margin-right: 100px;
+}
+@media screen and (min-width: 1200px) {
+  .login-birthdate-container {
+    width: 224px;
+  }
+  .login-birthdate__select,
+  .login-birthmonth__select,
+  .login-birthyear__select {
+    width: 30%;
+  }
+}
+@media screen and (max-width: 480px) {
+  .login__inputs {
+    width: 225px;
+    text-align: left;
+  }
+  .login-input__input {
+    width: 120px;
+  }
+  .login-input-container {
+    flex-direction: column;
+  }
+  .login-input__label {
+    margin-bottom: 10px;
+  }
+}
+
+.menu__item {
+  color: #05e6ff;
+  background-color: #05567c;
+  border: 2px solid #1593b7;
+  padding: 10px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 500;
+  transition-duration: 0.15s;
+}
+.menu__item:hover {
+  background-color: #066490;
+  border-color: #15a9d3;
+  color: #fff;
+}
+
+.title {
+  margin-top: 80px;
+  font-size: 40px;
+  font-weight: 400;
+  color: #05e6ff;
+  text-align: center;
+  text-shadow: 0 0 0.2em rgba(0, 236, 252, 0.5);
+  margin-bottom: 10px;
+}
+
+.item__title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #05e6ff;
 }

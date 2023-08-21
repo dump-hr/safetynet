@@ -12,7 +12,7 @@ import SubmitResult from './SubmitResult';
 
 const QuizPage = () => {
   const [showTutorial, setShowTutorial] = useState(
-    localStorage.getItem('showTutorial') !== 'false'
+    localStorage.getItem('safetynet.showTutorial') !== 'false'
   );
   const [gameEnded, setGameEnded] = useState(false);
 
@@ -29,7 +29,7 @@ const QuizPage = () => {
 
   const handleHideTutorial = () => {
     setShowTutorial(false);
-    localStorage.setItem('showTutorial', 'false');
+    localStorage.setItem('safetynet.showTutorial', 'false');
   };
 
   if (showTutorial) {
@@ -44,12 +44,13 @@ const QuizPage = () => {
     setDifficulty(null);
   };
 
-  if (!gameEnded) {
+  if (gameEnded) {
     return (
       <SubmitResult
         difficulty={difficulty}
         score={score}
         resetGame={handleResetGame}
+        onSurveyClick={() => setScore((prev) => prev + 150)}
       />
     );
   }

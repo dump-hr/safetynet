@@ -16,8 +16,17 @@ export class UsersController {
 
   @Post()
   async create(@Body() userAndScore: UserAndScoreDto) {
-    if (!userAndScore.score || !userAndScore.difficulty) {
-      throw new BadRequestException('Score and difficulty are required');
+    if (!userAndScore.name) {
+      throw new BadRequestException('Name is required');
+    }
+    if (!userAndScore.school) {
+      throw new BadRequestException('School is required');
+    }
+    if (!userAndScore.score) {
+      throw new BadRequestException('Score is required');
+    }
+    if (!userAndScore.difficulty) {
+      throw new BadRequestException('Difficulty is required');
     }
 
     await this.userService.saveUserAndScore(userAndScore);
