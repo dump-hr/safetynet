@@ -1,20 +1,12 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  PipeTransform,
-} from '@nestjs/common';
+import { BadRequestException, Injectable, PipeTransform } from '@nestjs/common';
 import { Difficulty } from '@prisma/client';
 
 @Injectable()
 export class ParseDifficultyPipe implements PipeTransform {
   transform(value: any) {
-    if (!value || Difficulty[value] === undefined)
-      throw new HttpException(
-        'Invalid value for Difficulty',
-        HttpStatus.BAD_REQUEST,
-      );
-
+    if (!value || Difficulty[value] === undefined) {
+      throw new BadRequestException('Invalid value for Difficulty');
+    }
     return value as Difficulty;
   }
 }

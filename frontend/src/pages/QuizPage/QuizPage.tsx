@@ -7,11 +7,12 @@ import Loading from '@/components/Loading';
 import styles from './index.module.scss';
 import { Link } from 'react-router-dom';
 import { Page, routes } from '@/App';
-import Tutorial from './Tutorial/Tutorial';
+import Tutorial from './Tutorial';
+import SubmitResult from './SubmitResult';
 
 const QuizPage = () => {
   const [showTutorial, setShowTutorial] = useState(
-    localStorage.getItem('showTutorial') !== 'false'
+    localStorage.getItem('safetynet.showTutorial') !== 'false'
   );
   const [gameEnded, setGameEnded] = useState(false);
 
@@ -28,15 +29,30 @@ const QuizPage = () => {
 
   const handleHideTutorial = () => {
     setShowTutorial(false);
-    localStorage.setItem('showTutorial', 'false');
+    localStorage.setItem('safetynet.showTutorial', 'false');
   };
 
   if (showTutorial) {
     return <Tutorial hideTutorial={handleHideTutorial} />;
   }
 
+  const handleResetGame = () => {
+    setQuestionIndex(0);
+    setScore(0);
+    setMultiplier(1);
+    setGameEnded(false);
+    setDifficulty(null);
+  };
+
   if (gameEnded) {
-    return <div>game ended</div>;
+    return (
+      <SubmitResult
+        difficulty={difficulty}
+        score={score}
+        resetGame={handleResetGame}
+        onSurveyClick={() => setScore((prev) => prev + 150)}
+      />
+    );
   }
 
   if (isLoading) {

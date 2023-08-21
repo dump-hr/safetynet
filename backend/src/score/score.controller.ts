@@ -8,18 +8,18 @@ import { ScoreWithUser } from './score.dto';
 export class ScoreController {
   constructor(private readonly scoreService: ScoreService) {}
 
+  @Get('best/:difficulty')
+  async getBestScores(
+    @Param('difficulty', ParseDifficultyPipe) difficulty: Difficulty,
+  ): Promise<ScoreWithUser[]> {
+    return await this.scoreService.getBestScores(difficulty);
+  }
+
   @Get(':difficulty/:score')
   async getUserPosition(
     @Param('difficulty', ParseDifficultyPipe) difficulty: Difficulty,
     @Param('score', ParseIntPipe) score: number,
   ): Promise<number> {
     return await this.scoreService.getUserPosition(difficulty, score);
-  }
-
-  @Get('best/:difficulty')
-  async getBestScores(
-    @Param('difficulty', ParseDifficultyPipe) difficulty: Difficulty,
-  ): Promise<ScoreWithUser[]> {
-    return await this.scoreService.getBestScores(difficulty);
   }
 }
