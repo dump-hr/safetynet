@@ -1,0 +1,146 @@
+.content {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 80%;
+  max-width: 920px;
+  text-align: center;
+}
+
+@media (max-width: 350px) {
+  .content {
+    text-align: center;
+  }
+}
+
+.title {
+  margin-top: 80px;
+  font-size: 60px;
+  font-weight: 400;
+  color: #05e6ff;
+  text-shadow: 0 0 15px rgba(0, 236, 252, 0.5);
+}
+
+.animations__enabled {
+  animation: fadeIn 0.2s ease-in 1 forwards;
+}
+
+.box {
+  background-color: rgba(4, 48, 83, 0.7);
+  border: 2px solid #14748f;
+  box-shadow: 0 0 8.5em 1em rgba(20, 116, 143, 0.5);
+  max-height: 600px;
+  padding: 30px;
+  padding-bottom: 70px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-x: auto;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+.item {
+  color: #fff;
+  margin: 2% auto;
+  flex-basis: 33.33%;
+  max-height: 150px;
+  height: 150px;
+  transition: all 0.25s ease-in-out;
+  cursor: pointer;
+}
+.item:hover {
+  color: #05e6ff;
+}
+.item:hover div > .item__image {
+  box-shadow: 0 0 2em 0.2em #14748f;
+}
+.item__image {
+  width: 160px;
+  height: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  background-size: cover;
+  transition: all 0.25s ease-in-out;
+}
+.item__text {
+  margin-top: 10px;
+  font-size: 16px;
+  color: inherit;
+  text-align: center;
+}
+
+.button {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  position: fixed;
+  top: calc(50% + 195px);
+  left: calc(50% - 60px);
+}
+
+.menu__item {
+  color: #05e6ff;
+  background-color: #05567c;
+  border: 2px solid #1593b7;
+  margin-bottom: 17px;
+  padding: 10px;
+  text-align: center;
+  font-size: 25px;
+  font-weight: 500;
+  transition-duration: 0.15s;
+}
+
+.menu__item:hover {
+  background-color: #066490;
+  border-color: #15a9d3;
+  color: #fff;
+  cursor: pointer;
+}
+
+@media (max-width: 1200px) {
+  .button {
+    left: calc(50% - 45px);
+  }
+}
+
+@media (max-width: 680px) {
+  .button {
+    top: calc(50% + 240px);
+  }
+  .box {
+    max-height: 400px;
+    padding-bottom: 30px;
+  }
+}
+
+@media (max-width: 439px) {
+  .button {
+    top: calc(50% + 265px);
+  }
+}
+
+@media (max-width: 1440px) {
+  .menu__container {
+    margin: 30px;
+  }
+  .menu__item {
+    font-size: 18px;
+    padding: 6px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu__item {
+    font-size: 16px;
+  }
+}
+
+.subcategory__button {
+  position: relative;
+  top: 2vh;
+  left: 0;
+}

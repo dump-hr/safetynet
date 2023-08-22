@@ -50,7 +50,7 @@ const HomePage = () => {
             <Link to={routes[Page.Quiz]}>
               <div className={styles.menu__item}>Igraj</div>
             </Link>
-            <Link to={routes[Page.ReadingMaterials]}>
+            <Link to={routes[Page.Materials]}>
               <div className={styles.menu__item}>Materijali za učenje</div>
             </Link>
             <Link to={routes[Page.Parents]}>
