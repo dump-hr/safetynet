@@ -22,3 +22,24 @@ export type Answer = {
 export type QuestionWithAnswer = Question & {
   answers: Omit<Answer, 'isCorrect'>[];
 };
+
+export type Score = {
+  id: number;
+  value: number;
+  difficulty: Difficulty;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: number;
+};
+
+export type User = {
+  id: number;
+  name: string;
+  school: string;
+  birthDate: Date;
+  createdAt: Date;
+};
+
+export type ScoreWithUser = Score & {
+  user: User;
+};
