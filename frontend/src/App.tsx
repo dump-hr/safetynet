@@ -1,6 +1,7 @@
 import AboutPage from '@pages/AboutPage';
 import HomePage from '@pages/HomePage';
 import MaterialsPage from '@pages/MaterialsPage';
+import MaterialPage from '@pages/MaterialsPage/MaterialPage';
 import ParentsPage from '@pages/ParentsPage';
 import QuizPage from '@pages/QuizPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -35,6 +36,14 @@ const App = () => {
         <Routes>
           <Route path={routes[Page.Quiz]} element={<QuizPage />} />
           <Route path={routes[Page.Materials]} element={<MaterialsPage />} />
+          <Route
+            path={`${routes[Page.Materials]}/:id`}
+            element={<MaterialsPage />}
+          />
+          <Route
+            path={`${routes[Page.Materials]}/:id/:materialId`}
+            element={<MaterialPage />}
+          />
           <Route path={routes[Page.Parents]} element={<ParentsPage />} />
           <Route path={routes[Page.Leaderboard]} element={<></>} />
           <Route path={routes[Page.About]} element={<AboutPage />} />
