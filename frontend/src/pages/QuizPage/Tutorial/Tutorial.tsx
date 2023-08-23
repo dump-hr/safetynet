@@ -1,6 +1,6 @@
 import styles from './index.module.scss';
-import pointsDesktop from '../../../../public/images/tutorial-points-desktop.png';
-import questionDesktop from '../../../../public/images/tutorial-question-desktop.png';
+import pointsDesktop from '../../../assets/images/tutorial-points-desktop.png';
+import questionDesktop from '../../../assets/images/tutorial-question-desktop.png';
 import clsx from 'clsx';
 
 type Props = {
