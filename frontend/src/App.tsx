@@ -1,5 +1,6 @@
 import AboutPage from '@pages/AboutPage';
 import HomePage from '@pages/HomePage';
+import LeaderboardPage from '@pages/LeaderboardPage';
 import MaterialsPage from '@pages/MaterialsPage';
 import MaterialPage from '@pages/MaterialsPage/MaterialPage';
 import NotFoundPage from '@pages/NotFoundPage';
@@ -46,7 +47,10 @@ const App = () => {
             element={<MaterialPage />}
           />
           <Route path={routes[Page.Parents]} element={<ParentsPage />} />
-          <Route path={routes[Page.Leaderboard]} element={<></>} />
+          <Route
+            path={routes[Page.Leaderboard]}
+            element={<LeaderboardPage />}
+          />
           <Route path={routes[Page.About]} element={<AboutPage />} />
           <Route path={routes[Page.Home]} element={<HomePage />} />
           <Route path="*" element={<NotFoundPage />} />
