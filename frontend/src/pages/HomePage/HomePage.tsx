@@ -5,6 +5,20 @@ import useTimeout from '@hooks/useTimeout/index';
 import { Link } from 'react-router-dom';
 import { Page, routes } from '@/App';
 
+const safetyFacts = [
+  '95% hakerskih napada događa se zbog ljudske greške.',
+  'Nedavno je hakiran mobitel osnivača Amazona Jeff Bezosa.',
+  'Dnevno se proizvede 300 000 novih virusa.',
+  'Svako 39 sekundi dogodi se pokušaj hakiranja.',
+  'WannaCry softver zarazio je 230.000 računala u 150 država - na svoj prvi dan.',
+  'Jedna britanska tvrtka izgubila je 45 milijuna funti zbog hakerskog napada.',
+  'Tvrtku FedEx jedan hakerski napad koštao je 400 milijuna dolara.',
+  'Prosječnu osobu hakerski napad oštetit će za oko 1000 kuna.',
+  '94% napada događa se putem e-maila - oprezno!',
+  '35% lozinki jednostavne su za hakirati.',
+  'Lady Gaga i Emma Watson samo su neke od hakiranih poznatih osoba.',
+];
+
 const HomePage = () => {
   const [hasSplashAnimationEnded, setHasSplashAnimationEnded] = useState(true);
 
@@ -43,14 +57,14 @@ const HomePage = () => {
           <span className={styles.content__info__highlight}>
             Jeste li znali:{' '}
           </span>
-          Prosječnu osobu hakerski napad oštetit će za oko 1000 kuna.
+          {safetyFacts[Math.floor(Math.random() * safetyFacts.length)]}
         </div>
         <div className={styles.content__menu}>
           <div className={styles.menu__container}>
             <Link to={routes[Page.Quiz]}>
               <div className={styles.menu__item}>Igraj</div>
             </Link>
-            <Link to={routes[Page.ReadingMaterials]}>
+            <Link to={routes[Page.Materials]}>
               <div className={styles.menu__item}>Materijali za učenje</div>
             </Link>
             <Link to={routes[Page.Parents]}>

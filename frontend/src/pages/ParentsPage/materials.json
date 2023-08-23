@@ -1,0 +1,104 @@
+[
+  {
+    "Id": 1,
+    "Title": "Zabavni sadržaji kao izvor opasnosti",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/zabavni-sadrzaji-kao-izvor-opasnosti.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/zabavni_sadrzaj_na_internetu.pdf"
+  },
+  {
+    "Id": 2,
+    "Title": "Sigurnost djece na internetu",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/sigurnost-djece-na-internetu.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/sigurnost_djece_na_internetu.pdf"
+  },
+  {
+    "Id": 3,
+    "Title": "Listić za roditelje",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/listic-za-roditelje.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/listici_za_roditelje.pdf"
+  },
+  {
+    "Id": 4,
+    "Title": "Moderni malware na Facebook-u",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/facebook-malware.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/moderni_malver_na_facebooku.pdf"
+  },
+  {
+    "Id": 5,
+    "Title": "Opasnosti Facebook-a",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/facebook-opasnosti.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/opasnosti_facebooka.pdf"
+  },
+  {
+    "Id": 6,
+    "Title": "Prezentacija za roditelje",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/prezentacija-za-roditelje.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/prezentacija_za_roditelje.pdf"
+  },
+  {
+    "Id": 7,
+    "Title": "Priručnik za djecu",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/prirucnik-za-djecu.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/prirucnik_za_djecu.pdf"
+  },
+  {
+    "Id": 8,
+    "Title": "Sigurnije na internetu",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/sigurnije-na-internetu.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/sigurnije_na_internetu.pdf"
+  },
+  {
+    "Id": 9,
+    "Title": "Sigurnost na internetu",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/sigurnost-na-internetu.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/sigurnost_na_internetu.pdf"
+  },
+  {
+    "Id": 10,
+    "Title": "Alkohol i mladi",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/alkohol-i-mladi.png",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/alkohol-i-mladi.pdf"
+  },
+  {
+    "Id": 11,
+    "Title": "Droga i mladi",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/droga-i-mladi.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/droga-i-mladi.pdf"
+  },
+  {
+    "Id": 12,
+    "Title": "Kocka i mladi",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/kocka-i-mladi.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/kocka-i-mladi.pdf"
+  },
+  {
+    "Id": 13,
+    "Title": "Rizik kockanja",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/parent-materials/rizik_kockanja.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/rizik_kockanja.pdf"
+  },
+  {
+    "Id": 14,
+    "Title": "Međunarodni dan prevencije zlostavljanja djece i Međunarodni dan djeteta",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/study-materials/study-material.jpg",
+    "DownloadUrl": "https://mup.gov.hr/vijesti/obiljezavamo-medjunarodni-dan-prevencije-zlostavljanja-djece-i-medjunarodni-dan-djeteta/287379"
+  },
+  {
+    "Id": 15,
+    "Title": "Europski dan zaštite djece od seksualnog zlostavljanja i iskorištavanja",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/study-materials/study-material.jpg",
+    "DownloadUrl": "https://mup.gov.hr/vijesti/europski-dan-zastite-djece-od-seksualnog-zlostavljanja-i-iskoristavanja/287374"
+  },
+  {
+    "Id": 16,
+    "Title": "Međunarodni dan tolerancije",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/study-materials/study-material.jpg",
+    "DownloadUrl": "https://mup.gov.hr/medjunarodni-dan-tolerancije-svi-smo-mi-razliciti-a-ta-razlika-nas-obogacuje/287372"
+  },
+  {
+    "Id": 17,
+    "Title": "Savjeti za zaštitu od računalnih prevara",
+    "IconUrl": "https://safetynet-assets.dump.hr/images/study-materials/study-material.jpg",
+    "DownloadUrl": "https://safetynet-assets.dump.hr/documents/racunalne_prevare.pdf"
+  }
+]

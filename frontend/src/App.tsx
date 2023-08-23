@@ -1,5 +1,8 @@
 import AboutPage from '@pages/AboutPage';
 import HomePage from '@pages/HomePage';
+import MaterialsPage from '@pages/MaterialsPage';
+import MaterialPage from '@pages/MaterialsPage/MaterialPage';
+import NotFoundPage from '@pages/NotFoundPage';
 import ParentsPage from '@pages/ParentsPage';
 import QuizPage from '@pages/QuizPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -9,7 +12,7 @@ export enum Page {
   Home,
   Quiz,
   Settings,
-  ReadingMaterials,
+  Materials,
   Parents,
   Leaderboard,
   About,
@@ -19,7 +22,7 @@ export const routes = {
   [Page.Home]: '/',
   [Page.Quiz]: '/igra',
   [Page.Settings]: '/postavke',
-  [Page.ReadingMaterials]: '/materijali-za-ucenje',
+  [Page.Materials]: '/materijali-za-ucenje',
   [Page.Parents]: '/kutak-za-roditelje',
   [Page.Leaderboard]: '/ljestvica',
   [Page.About]: '/o-igri',
@@ -33,11 +36,20 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path={routes[Page.Quiz]} element={<QuizPage />} />
-          <Route path={routes[Page.ReadingMaterials]} element={<></>} />
+          <Route path={routes[Page.Materials]} element={<MaterialsPage />} />
+          <Route
+            path={`${routes[Page.Materials]}/:id`}
+            element={<MaterialsPage />}
+          />
+          <Route
+            path={`${routes[Page.Materials]}/:id/:materialId`}
+            element={<MaterialPage />}
+          />
           <Route path={routes[Page.Parents]} element={<ParentsPage />} />
           <Route path={routes[Page.Leaderboard]} element={<></>} />
           <Route path={routes[Page.About]} element={<AboutPage />} />
           <Route path={routes[Page.Home]} element={<HomePage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </QueryClientProvider>

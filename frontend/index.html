@@ -16,16 +16,53 @@
     <meta property="og:url" content="https://safetynet-kviz.skole.hr" />
     <meta property="og:type" content="safetynet-namespace:score" />
     <meta property="og:site_name" content="SafetyNet Kviz" />
-    <!-- TODO -->
-    <meta
-      property="og:image"
-      content="https://safetynet-kviz.skole.hr/Assets/Images/facebook-share-picture.jpg"
-    />
-    <!-- TODO -->
+    <meta property="og:image" content="/images/facebook-share-picture.jpg" />
     <meta
       property="og:image:secure_url"
-      content="https://safetynet-kviz.skole.hr/Assets/Images/facebook-share-picture.jpg"
+      content="/images/facebook-share-picture.jpg"
     />
+
+    <!--
+      https://csswizardry.com/2020/05/the-fastest-google-fonts/
+      - 1. Preemptively warm up the fonts’ origin.
+      -
+      - 2. Initiate a high-priority, asynchronous fetch for the CSS file. Works in
+      -    most modern browsers.
+      -
+      - 3. Initiate a low-priority, asynchronous fetch that gets applied to the page
+      -    only after it’s arrived. Works in all browsers with JavaScript enabled.
+      -
+      - 4. In the unlikely event that a visitor has intentionally disabled
+      -    JavaScript, fall back to the original method. The good news is that,
+      -    although this is a render-blocking request, it can still make use of the
+      -    preconnect which makes it marginally faster than the default.
+      -->
+
+    <!-- [1] -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- [2] -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css?family=Exo+2:400,900,900italic,800,700,600,500,300&display=swap"
+    />
+
+    <!-- [3] -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Exo+2:400,900,900italic,800,700,600,500,300&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+
+    <!-- [4] -->
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Exo+2:400,900,900italic,800,700,600,500,300&display=swap"
+      />
+    </noscript>
   </head>
   <body>
     <div id="root"></div>

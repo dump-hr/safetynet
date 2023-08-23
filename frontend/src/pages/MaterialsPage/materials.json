@@ -1,0 +1,233 @@
+[
+  {
+    "Id": "cyberbullying",
+    "Title": "Cyberbullying",
+    "ImageUrl": "https://safetynet-assets.dump.hr/images/study-materials/cyberbullying.jpg",
+    "StudyMaterials": [
+      {
+        "Id": "1",
+        "Title": "Elektroničko zlostavljanje",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQNGllTlQtb0t3U1E/preview?resourcekey=0-fNiZw1Mn_FJXMUCqs9hMRw"
+      },
+      {
+        "Id": "2",
+        "Title": "Zlostavljanje na društvenim mrežama",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQU3lxY2R0STAzbE0/preview?resourcekey=0-cXrS0F7gT0gQurucy6uf8A"
+      },
+      {
+        "Id": "3",
+        "Title": "Zlostavljanje na forumima i chat sobama",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQZjRPXy1aX2YzMEU/preview?resourcekey=0-av6YlPQhhYhFsMUH5-Sl4A"
+      },
+      {
+        "Id": "4",
+        "Title": "Zaštita osobnih podataka",
+        "PresentationUrl": "https://drive.google.com/file/d/1pEhBIcTD6h1fLWoxnTZAeTtSi1UomW2x/preview"
+      },
+      {
+        "Id": "5",
+        "Title": "VIDEO: Tko se to šali s mojim podacima?",
+        "VideoUrl": "https://www.youtube.com/embed/JRCOX_zAtKk"
+      },
+      {
+        "Id": "6",
+        "Title": "VIDEO: Europolova kampanja protiv on-line iskorištavanja djece",
+        "VideoUrl": "https://www.youtube.com/embed/WyXIZuYDp4Y"
+      },
+      {
+        "Id": "7",
+        "Title": "VIDEO: Nemoj postati lovina",
+        "VideoUrl": "https://www.youtube.com/embed/53OaQ1y0i04"
+      }
+    ]
+  },
+  {
+    "Id": "email",
+    "Title": "Elektronička pošta",
+    "ImageUrl": "https://safetynet-assets.dump.hr/images/study-materials/email.jpg",
+    "StudyMaterials": [
+      {
+        "Id": "1",
+        "Title": "Uvod",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQcnNGTmdwV21SVnc/preview?resourcekey=0-s0SmY190wivLeoe63mWaoQ"
+      },
+      {
+        "Id": "2",
+        "Title": "Spam",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQVGpmVllVX0lveDA/preview?resourcekey=0-R8V73PXaEi9zRkJPlzpK_Q"
+      },
+      {
+        "Id": "3",
+        "Title": "Zloćudni softver",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQZUMzYXRQdVl5TWc/preview?resourcekey=0-8vdNh6t0N89T4sat_6MeCA"
+      },
+      {
+        "Id": "4",
+        "Title": "Phishing",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQSFV0N1F5QnY4Wmc/preview?resourcekey=0-00XnniqoWTQl7itrIM1kGA"
+      },
+      {
+        "Id": "5",
+        "Title": "Lančane poruke",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQanhuZ054VUl6Ums/preview?resourcekey=0-BjXb-_AzShgai1zcO_y_jg"
+      },
+      {
+        "Id": "6",
+        "Title": "Lažne poruke",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQN21PZ3NXSThtZW8/preview?resourcekey=0-dl8z3SMxD6utTq1X8GRYTw"
+      }
+    ]
+  },
+  {
+    "Id": "malware",
+    "Title": "Malware",
+    "ImageUrl": "https://safetynet-assets.dump.hr/images/study-materials/malware.jpg",
+    "StudyMaterials": [
+      {
+        "Id": "1",
+        "Title": "Zloćudni softver",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQLWQwMWdMLUR1cDQ/preview?resourcekey=0-swbPgCwzNAWNOTRTSBCK4g"
+      },
+      {
+        "Id": "2",
+        "Title": "Virusi",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQMk1WVkExTnN4LXM/preview?resourcekey=0-GD1uKhpbkKd9oOuYe0TfNw"
+      },
+      {
+        "Id": "3",
+        "Title": "Crvi",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQMkJrWGwtUXZ1ME0/preview?resourcekey=0-sw9lgigLQfp9MNHdloBuZw"
+      },
+      {
+        "Id": "4",
+        "Title": "Trojanski konji",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQTE5rbUMyQjd6SmM/preview?resourcekey=0-AvTdIzlDVinmx7o4K31Lig"
+      },
+      {
+        "Id": "5",
+        "Title": "Adware",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQTjg0Sno2aE1Mak0/preview?resourcekey=0-1lz4iff-Tp_VzP4vKjf0Kg"
+      },
+      {
+        "Id": "6",
+        "Title": "Spyware",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQeExNWENMQkpRQTQ/preview?resourcekey=0-3vo7sULxTSo-QF-OlEbAhg"
+      },
+      {
+        "Id": "7",
+        "Title": "Keyloggeri",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQazRRYkkyNzFTSXM/preview?resourcekey=0-XRL_iArCkgfk1Kv3l-r5Ag"
+      },
+      {
+        "Id": "8",
+        "Title": "VIDEO: Mobile Malware",
+        "PresentationUrl": "https://www.youtube.com/embed/boHzY1V1oCU"
+      }
+    ]
+  },
+  {
+    "Id": "general",
+    "Title": "Općenito",
+    "ImageUrl": "https://safetynet-assets.dump.hr/images/study-materials/general.jpg",
+    "StudyMaterials": [
+      {
+        "Id": "1",
+        "Title": "Općeniti savjeti",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQQWR4clZHVjg5ODg/preview?resourcekey=0-zHOdhwoc-_PuwniWKdTFKg"
+      },
+      {
+        "Id": "2",
+        "Title": "Lozinke",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQYXpkVTVLM2ZvckU/preview?resourcekey=0-0o7XRXbnaqDBrD82DuZnIA"
+      },
+      {
+        "Id": "3",
+        "Title": "Bežične mreže",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQOXRNckhzemlGS1U/preview?resourcekey=0-ozcXp92d0TNFV5gCmHscQA"
+      },
+      {
+        "Id": "4",
+        "Title": "Komunikacija",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQYy1tX0tjNEJ0Z0U/preview?resourcekey=0-KtO0ey2WZNa6HoWS5DOMHQ"
+      },
+      {
+        "Id": "5",
+        "Title": "Web",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQcVYwMjBUOVBSMk0/preview?resourcekey=0-4zsKApWbd1ed9k55QUE0pQ"
+      },
+      {
+        "Id": "6",
+        "Title": "Kaznene odredbe",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQY2J6S2NCT3FQdTQ/preview?resourcekey=0-MrG_7UVRXB8yrvZKoYHU_Q"
+      },
+      {
+        "Id": "7",
+        "Title": "Red Button",
+        "PresentationUrl": "https://drive.google.com/file/d/0B3S6x2jYG6BQekxpQnpoMUw3bGc/preview?resourcekey=0-rI8mNKAFq3t3COgLdLxgOA"
+      }
+    ]
+  },
+  {
+    "Id": "traffic-safety",
+    "Title": "Sigurnost u prometu",
+    "ImageUrl": "https://safetynet-assets.dump.hr/images/study-materials/study-material.jpg",
+    "StudyMaterials": [
+      {
+        "Id": "1",
+        "Title": "Opasnost mobitela u prometu",
+        "VideoUrl": "https://www.youtube.com/embed/wFUYhNAhbxA"
+      },
+      {
+        "Id": "2",
+        "Title": "Sigurnosni pojas i pretjecanje",
+        "VideoUrl": "https://www.youtube.com/embed/rfv1-yA_uAw"
+      },
+      {
+        "Id": "3",
+        "Title": "Slanje poruka u prometu",
+        "VideoUrl": "https://www.youtube.com/embed/W9ABREt39NY"
+      }
+    ]
+  },
+  {
+    "Id": "tolerancy",
+    "Title": "Tolerancija",
+    "ImageUrl": "https://safetynet-assets.dump.hr/images/study-materials/study-material.jpg",
+    "StudyMaterials": [
+      {
+        "Id": "1",
+        "Title": "Tolerancija",
+        "VideoUrl": "https://www.youtube.com/embed/FMbihh9OWIQ"
+      },
+      {
+        "Id": "2",
+        "Title": "Upitnik za samoprocjenu tolerancije",
+        "PresentationUrl": "https://drive.google.com/file/d/1GTx3tBOC8LYEbTCq0Nz6dt8iPnKYmuz_/preview"
+      }
+    ]
+  },
+  {
+    "Id": "human-trafficing",
+    "Title": "Trgovina ljudima",
+    "ImageUrl": "https://safetynet-assets.dump.hr/images/study-materials/study-material.jpg",
+    "StudyMaterials": [
+      {
+        "Id": "1",
+        "Title": "Trgovina ljudima",
+        "VideoUrl": "https://www.youtube.com/embed/9SLgjwEfimg"
+      }
+    ]
+  },
+  {
+    "Id": "online-shopping",
+    "Title": "Kako sigurno online kupovati/prodavati",
+    "ImageUrl": "https://safetynet-assets.dump.hr/images/study-materials/study-material.jpg",
+    "StudyMaterials": [
+      {
+        "Id": "1",
+        "Title": "Kako sigurno online kupovati/prodavati",
+        "PresentationUrl": "https://drive.google.com/file/d/1OglI6LLa-F7sx1mM6KC6dID-TrOk9Bmv/preview"
+      }
+    ]
+  }
+]
