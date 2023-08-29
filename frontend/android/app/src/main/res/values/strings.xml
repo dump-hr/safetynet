@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">safetynet</string>
-    <string name="title_activity_main">safetynet</string>
+    <string name="app_name">SafetyNet</string>
+    <string name="title_activity_main">SafetyNet</string>
     <string name="package_name">hr.safetynet.app</string>
     <string name="custom_url_scheme">hr.safetynet.app</string>
 </resources>

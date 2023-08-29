@@ -2,16 +2,16 @@ import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'hr.safetynet.app',
-  appName: 'safetynet',
+  appName: 'SafetyNet',
   webDir: 'dist',
   server: {
     androidScheme: 'https',
   },
   plugins: {
     SplashScreen: {
-      launchShowDuration: 3000,
+      launchShowDuration: 2000,
       launchAutoHide: true,
-      launchFadeOutDuration: 3000,
+      launchFadeOutDuration: 1000,
       backgroundColor: '#010c12',
       androidSplashResourceName: 'splash',
       androidScaleType: 'CENTER_CROP',
