@@ -70,9 +70,7 @@ const QuizPage = () => {
                 Greška pri učitavanju, pokušaj ponovo
               </div>
               <Link to={routes[Page.Home]}>
-                <div ui-sref="home" className={styles.menu__item}>
-                  &larr; Nazad
-                </div>
+                <div className={styles.menu__item}>&larr; Nazad</div>
               </Link>
             </div>
           </div>

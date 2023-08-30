@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { Page, routes } from '@/App';
 import { useGetBestScores } from '@/api/query/getBestScores';
 import Loading from '@components/Loading';
+import ErrorPage from '@pages/ErrorPage';
 
 const LeaderboardPage = () => {
   const [difficulty, setDifficulty] = useState<Difficulty>(Difficulty.Beginner);
@@ -16,6 +17,10 @@ const LeaderboardPage = () => {
 
   if (beginnerScores.isLoading || advancedScores.isLoading) {
     return <Loading />;
+  }
+
+  if (beginnerScores.isError || advancedScores.isError) {
+    return <ErrorPage message="Greška pri učitavanju, pokušaj ponovo" />;
   }
 
   const scores =
