@@ -1,5 +1,5 @@
 import { Difficulty } from '@/types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useGetQuestions } from '@/api';
 import ChooseDifficulty from './ChooseDifficulty';
 import Game from './Game';
@@ -16,12 +16,21 @@ const QuizPage = () => {
   );
   const [gameEnded, setGameEnded] = useState(false);
 
+  const [gameId, setGameId] = useState(0);
   const [difficulty, setDifficulty] = useState<Difficulty>(null);
   const [questionIndex, setQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
   const [multiplier, setMultiplier] = useState(1);
 
-  const { data: questions, isError, isLoading } = useGetQuestions(difficulty);
+  const {
+    data: questions,
+    isError,
+    isLoading,
+  } = useGetQuestions(difficulty, gameId);
+
+  useEffect(() => {
+    setGameId(difficulty !== null ? new Date().getTime() : 0);
+  }, [difficulty]);
 
   if (difficulty === null) {
     return <ChooseDifficulty setDifficulty={setDifficulty} />;
