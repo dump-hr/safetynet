@@ -15,7 +15,7 @@ export class ScoreController {
     return await this.scoreService.getBestScores(difficulty);
   }
 
-  @Get(':difficulty/:score')
+  @Get('position/:difficulty/:score')
   async getUserPosition(
     @Param('difficulty', ParseDifficultyPipe) difficulty: Difficulty,
     @Param('score', ParseIntPipe) score: number,

@@ -6,7 +6,7 @@ export const getUserPosition = async (
   difficulty: Difficulty,
   score: number
 ): Promise<number> => {
-  return await fetchAPI(`/score/${Difficulty[difficulty]}/${score}`);
+  return await fetchAPI(`/score/position/${Difficulty[difficulty]}/${score}`);
 };
 
 export const getUserPositionKey = (
