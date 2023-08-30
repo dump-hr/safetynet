@@ -18,5 +18,6 @@ export const useGetUserPosition = (difficulty: Difficulty, score: number) => {
   return useQuery({
     queryKey: getUserPositionKey(difficulty, score),
     queryFn: () => getUserPosition(difficulty, score),
+    staleTime: Infinity,
   });
 };
