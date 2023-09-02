@@ -25,9 +25,11 @@
       traefik.http.routers.api.rule: "Host(`{{ api_domain }}`)"
       traefik.http.middlewares.api-retry.retry.attempts: "5"
       traefik.http.middlewares.api-retry.retry.initialinterval: "100ms"
+      traefik.http.middlewares.api-cors.headers.accesscontrolallowmethods: "*"
       traefik.http.middlewares.api-cors.headers.accesscontrolalloworiginlist: "*"
       traefik.http.middlewares.api-cors.headers.accesscontrolallowcredentials: "true"
-      traefik.http.middlewares.api-cors.headers.accesscontrolallowmethods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS"
+      traefik.http.middlewares.api-cors.headers.accesscontrolmaxage: "100"
+      traefik.http.middlewares.api-cors.headers.addvaryheader: "true"
       traefik.http.routers.api.middlewares: "api-retry@docker, api-cors@docker"
       # Setting a service property ensures that the generated service name will be consistent between versions
       traefik.http.services.api.loadbalancer.server.scheme: "http"
