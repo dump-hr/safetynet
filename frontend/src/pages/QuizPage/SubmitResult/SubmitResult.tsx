@@ -181,16 +181,9 @@ const SubmitResult: React.FC<Props> = ({
                   type="submit"
                 >
                   {run(() => {
-                    if (userScore.isSuccess) {
-                      // fetch does not reject promises when the response is not ok...
-                      if (userScore.data?.statusCode === 400) {
-                        return `Pogreška: ${userScore.data.message}`;
-                      }
-                      return 'Poslano!';
-                    }
-                    if (userScore.isLoading) {
-                      return 'Šaljem...';
-                    }
+                    if (userScore.isLoading) return 'Šaljem...';
+                    if (userScore.isError) return `Pogreška: ${userScore.data}`;
+                    if (userScore.isSuccess) return 'Poslano!';
                     return 'Pošalji rezultat';
                   })}
                 </button>

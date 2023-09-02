@@ -1,14 +1,8 @@
 import { useMutation } from '@tanstack/react-query';
-import { fetchAPI } from '..';
+import { api, fetchAPI } from '..';
 
 const postUserScore = async (userDto) => {
-  return await fetchAPI('/user', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(userDto),
-  });
+  return await api.post('/user', userDto, { withCredentials: false });
 };
 
 export const usePostUserScore = () => {
