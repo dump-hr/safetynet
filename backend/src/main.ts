@@ -15,6 +15,7 @@ async function bootstrap() {
       'https://safetynet-web-production.dump.hr',
       'https://safetynet-kviz.skole.hr',
     ],
+    credentials: true,
   });
 
   const prismaService = app.get(PrismaService);
