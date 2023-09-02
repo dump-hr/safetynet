@@ -5,7 +5,7 @@ import { QuestionWithAnswer } from './question.dto';
 import { shuffle } from 'src/utils/shuffle';
 import { exclude } from 'src/utils/exclude';
 
-const NUMBER_OF_QUESTIONS_PER_GAME = 5;
+const NUMBER_OF_QUESTIONS_PER_GAME = 1;
 
 @Injectable()
 export class QuestionService {
