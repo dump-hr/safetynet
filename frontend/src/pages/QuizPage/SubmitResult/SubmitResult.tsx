@@ -182,7 +182,8 @@ const SubmitResult: React.FC<Props> = ({
                 >
                   {run(() => {
                     if (userScore.isLoading) return 'Šaljem...';
-                    if (userScore.isError) return `Pogreška: ${userScore.data}`;
+                    if (userScore.isError)
+                      return `Pogreška: ${userScore.error}`;
                     if (userScore.isSuccess) return 'Poslano!';
                     return 'Pošalji rezultat';
                   })}
