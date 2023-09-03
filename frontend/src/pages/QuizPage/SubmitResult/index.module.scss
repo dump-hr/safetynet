@@ -114,8 +114,9 @@
 }
 @media (max-width: 480px) {
   .ending__container {
-    margin-top: 125px;
+    margin-top: 200px;
     width: 340px;
+    height: 640px;
   }
   .ending__shape {
     margin-top: -115px;
@@ -231,6 +232,13 @@
   .login-input__label {
     margin-bottom: 10px;
   }
+  .login__buttons {
+    width: 100%;
+    margin-top: 6px;
+  }
+  .login__button {
+    width: 100%;
+  }
 }
 
 .menu__item {
@@ -258,7 +266,11 @@
   text-shadow: 0 0 0.2em rgba(0, 236, 252, 0.5);
   margin-bottom: 10px;
 }
-
+@media screen and (max-width: 480px) {
+  .title {
+    font-size: 25px;
+  }
+}
 .item__title {
   font-size: 20px;
   font-weight: 600;
