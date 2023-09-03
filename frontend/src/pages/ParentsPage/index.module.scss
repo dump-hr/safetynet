@@ -84,6 +84,13 @@
   width: 80%;
 }
 
+@media (max-width: 480px) {
+  .parents__content__right,
+  .parents__content__left {
+    width: 100%;
+  }
+}
+
 .parents__button {
   position: absolute;
   bottom: 9%;

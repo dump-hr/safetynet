@@ -364,11 +364,6 @@
     right: -50px;
     font-size: 25px;
   }
-  .leave-game {
-    top: 10px;
-    left: 15px;
-    font-size: 18px;
-  }
 }
 
 .timerEndingAnimation {
@@ -416,4 +411,11 @@
   align-items: center;
   height: 100%;
   margin-left: 10px;
+}
+@media (max-width: 480px) {
+  .leave-game {
+    top: 45px;
+    left: 15px;
+    font-size: 18px;
+  }
 }
