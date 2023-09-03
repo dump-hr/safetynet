@@ -22,14 +22,17 @@ export class UsersController {
     if (!userAndScore.school) {
       throw new BadRequestException('School is required');
     }
-    if (!userAndScore.score) {
+    if (!+userAndScore.score) {
       throw new BadRequestException('Score is required');
     }
     if (!userAndScore.difficulty) {
       throw new BadRequestException('Difficulty is required');
     }
 
-    await this.userService.saveUserAndScore(userAndScore);
+    await this.userService.saveUserAndScore({
+      ...userAndScore,
+      score: +userAndScore.score,
+    });
   }
 
   @Get('score/:userId')
