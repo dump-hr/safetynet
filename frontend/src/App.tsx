@@ -8,6 +8,7 @@ import ParentsPage from '@pages/ParentsPage';
 import QuizPage from '@pages/QuizPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import PrivacyPolicyPage from '@pages/PrivacyPolicyPage';
 
 export enum Page {
   Home,
@@ -17,6 +18,7 @@ export enum Page {
   Parents,
   Leaderboard,
   About,
+  PrivacyPolicy,
 }
 
 export const routes = {
@@ -27,6 +29,7 @@ export const routes = {
   [Page.Parents]: '/kutak-za-roditelje',
   [Page.Leaderboard]: '/ljestvica',
   [Page.About]: '/o-igri',
+  [Page.PrivacyPolicy]: '/privacy',
 };
 
 const queryClient = new QueryClient();
@@ -52,6 +55,10 @@ const App = () => {
             element={<LeaderboardPage />}
           />
           <Route path={routes[Page.About]} element={<AboutPage />} />
+          <Route
+            path={routes[Page.PrivacyPolicy]}
+            element={<PrivacyPolicyPage />}
+          />
           <Route path={routes[Page.Home]} element={<HomePage />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
