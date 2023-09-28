@@ -36,6 +36,10 @@ provider "cloudflare" {
   api_token = data.sops_file.secrets.data["cloudflare_api_token"]
 }
 
+data "cloudflare_zone" "dump_hr" {
+  name = "dump.hr"
+}
+
 data "sops_file" "secrets" {
   source_file = "secrets.enc.json"
 }
@@ -51,7 +55,7 @@ module "api" {
   security_groups           = data.aws_security_groups.public_sg.ids
   ssh_public_key            = file("../../../../ssh-keys/preview.pub")
   website_domain            = "safetynet-api-preview-${var.preview_name}.dump.hr"
-  cloudflare_zone_id        = "b21704208d240237d4c4484318481bff"
+  cloudflare_zone_id        = data.cloudflare_zone.dump_hr.id
 
 
   tags = {
