@@ -42,6 +42,10 @@ provider "cloudflare" {
   api_token = data.sops_file.secrets.data["cloudflare_api_token"]
 }
 
+data "cloudflare_zone" "dump_hr" {
+  name = "dump.hr"
+}
+
 data "sops_file" "secrets" {
   source_file = "secrets.enc.json"
 }
@@ -52,7 +56,7 @@ module "assets" {
   bucket_name        = "safetynet-assets"
   bucket_versioning  = true
   website_domain     = "safetynet-assets.dump.hr"
-  cloudflare_zone_id = "b21704208d240237d4c4484318481bff"
+  cloudflare_zone_id = data.cloudflare_zone.dump_hr.id
 
   tags = {
     Project     = "safetynet"
