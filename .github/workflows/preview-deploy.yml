@@ -1,9 +1,9 @@
 name: Deploy preview
 
 on:
-#  push:
-#    branches-ignore:
-#      - main
+  #  push:
+  #    branches-ignore:
+  #      - main
 
   workflow_dispatch:
 
@@ -148,7 +148,7 @@ jobs:
         uses: rlespinasse/github-slug-action@v4
 
       - name: Setup Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 18.x
           cache: "yarn"
