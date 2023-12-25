@@ -7,7 +7,15 @@ import ErrorPage from '@pages/ErrorPage';
 import ParentsPage from '@pages/ParentsPage';
 import QuizPage from '@pages/QuizPage';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  RouterProvider,
+  Routes,
+  createBrowserRouter,
+  createRoutesFromElements,
+  useRouteError,
+} from 'react-router-dom';
 import PrivacyPolicyPage from '@pages/PrivacyPolicyPage';
 
 export enum Page {
@@ -34,35 +42,42 @@ export const routes = {
 
 const queryClient = new QueryClient();
 
+const ErrorBoundary = () => {
+  const error = useRouteError();
+
+  return <ErrorPage message={String(error)} />;
+};
+
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route errorElement={<ErrorBoundary />}>
+      <Route path={routes[Page.Quiz]} element={<QuizPage />} />
+      <Route path={routes[Page.Materials]} element={<MaterialsPage />} />
+      <Route
+        path={`${routes[Page.Materials]}/:id`}
+        element={<MaterialsPage />}
+      />
+      <Route
+        path={`${routes[Page.Materials]}/:id/:materialId`}
+        element={<MaterialPage />}
+      />
+      <Route path={routes[Page.Parents]} element={<ParentsPage />} />
+      <Route path={routes[Page.Leaderboard]} element={<LeaderboardPage />} />
+      <Route path={routes[Page.About]} element={<AboutPage />} />
+      <Route
+        path={routes[Page.PrivacyPolicy]}
+        element={<PrivacyPolicyPage />}
+      />
+      <Route path={routes[Page.Home]} element={<HomePage />} />
+      <Route path="*" element={<ErrorPage />} />
+    </Route>
+  )
+);
+
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
-          <Route path={routes[Page.Quiz]} element={<QuizPage />} />
-          <Route path={routes[Page.Materials]} element={<MaterialsPage />} />
-          <Route
-            path={`${routes[Page.Materials]}/:id`}
-            element={<MaterialsPage />}
-          />
-          <Route
-            path={`${routes[Page.Materials]}/:id/:materialId`}
-            element={<MaterialPage />}
-          />
-          <Route path={routes[Page.Parents]} element={<ParentsPage />} />
-          <Route
-            path={routes[Page.Leaderboard]}
-            element={<LeaderboardPage />}
-          />
-          <Route path={routes[Page.About]} element={<AboutPage />} />
-          <Route
-            path={routes[Page.PrivacyPolicy]}
-            element={<PrivacyPolicyPage />}
-          />
-          <Route path={routes[Page.Home]} element={<HomePage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Routes>
-      </BrowserRouter>
+      <RouterProvider router={router} />
     </QueryClientProvider>
   );
 };
