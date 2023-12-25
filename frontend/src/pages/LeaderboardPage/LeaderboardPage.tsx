@@ -59,7 +59,7 @@ const LeaderboardPage = () => {
             {scores.map((score, index) => (
               <div
                 className={clsx(styles.row, {
-                  [styles.highlight]: user.name === score.user.name,
+                  [styles.highlight]: user && user.name === score.user.name,
                   [styles.even]: index % 2 === 0,
                   [styles.uneven]: index % 2 === 1,
                 })}
