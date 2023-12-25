@@ -9,10 +9,12 @@ import { Link } from 'react-router-dom';
 import { Page, routes } from '@/App';
 import Tutorial from './Tutorial';
 import SubmitResult from './SubmitResult';
+import { useMediaQuery } from '@hooks/useMediaQuery';
 
 const QuizPage = () => {
+  const isMobile = useMediaQuery('(max-width: 768px)');
   const [showTutorial, setShowTutorial] = useState(
-    localStorage.getItem('safetynet.showTutorial') !== 'false'
+    !isMobile && localStorage.getItem('safetynet.showTutorial') !== 'false'
   );
   const [gameEnded, setGameEnded] = useState(false);
 
