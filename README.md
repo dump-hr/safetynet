@@ -35,6 +35,17 @@ Frontend is now running on <http://localhost:5173/> and backend is running on <h
 
 ## Cookbook
 
+### Build android app
+
+```
+cd frontend
+yarn build
+npx cap sync android
+npx cap open android
+```
+
+Build > Generate APKs
+
 ### Generate new icons
 
 change icon in `frontend/assets/logo.png`
