@@ -1,7 +1,7 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'hr.safetynet.app',
+  appId: 'hr.safetynet2025.app',
   appName: 'SafetyNet',
   webDir: 'dist',
   server: {
