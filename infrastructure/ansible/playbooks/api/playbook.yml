@@ -23,6 +23,7 @@
         docker_users:
           - admin
     - role: traefik
+    - role: node_exporter
     - role: api
       vars:
         docker_tag: main
