@@ -28,6 +28,5 @@
     - role: node_exporter
     - role: api
       vars:
-        docker_tag: main
         env_file: production
         api_domain: safetynet-api-production.dump.hr
