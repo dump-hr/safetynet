@@ -1,4 +1,4 @@
-FROM node:18-slim AS builder
+FROM node:24-slim AS builder
 WORKDIR /app
 ENV PORT 3000
 EXPOSE 3000
@@ -16,4 +16,4 @@ COPY . .
 
 RUN yarn build
 
-CMD [ "yarn", "start:prod" ]
+CMD [ "node", "dist/main" ]
