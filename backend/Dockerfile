@@ -1,6 +1,7 @@
 FROM node:24-slim AS builder
 WORKDIR /app
 ENV PORT 3000
+ENV NO_COLOR 1
 EXPOSE 3000
 HEALTHCHECK CMD curl -f http://localhost:3000/app/healthcheck || exit 1
 LABEL org.opencontainers.image.source https://github.com/dump-hr/safetynet
