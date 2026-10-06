@@ -24,7 +24,7 @@
           - admin
     - role: traefik
     - role: alloy
-      when: (tags.Environment | default('')) == 'production'
+      when: (ec2_tags.Environment | default('')) == 'production'
     - role: node_exporter
     - role: api
       vars:
